@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="ibox-body">
+                <div class="fixed-table-toolbar" th:if="${ comment != null }">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">头像：</label>
+                        <div class="col-sm-8">
+                            <img th:src="${comment.avatar}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">昵称：</label>
+                        <div class="col-sm-8">
+                            <h3 th:text="${comment.nickName}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">内容：</label>
+                        <div class="col-sm-8">
+                            <h3 th:text="${comment.content}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">创建时间：</label>
+                        <div class="col-sm-8">
+                            <h3 th:text="${comment.createTime}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="fixed-table-toolbar">
+                    <div class="columns pull-left">
+                        <button class="btn btn-warning" onclick="history.back()">返回</button>
+                        <button shiro:hasPermission="a5:comment:add" type="button" class="btn  btn-primary"
+                                onclick="add()">
+                            <i class="fa fa-plus" aria-hidden="true"></i>添加
+                        </button>
+                        <button shiro:hasPermission="a5:comment:batchRemove" type="button" class="btn  btn-danger"
+                                onclick="batchRemove()">
+                            <i class="fa fa-trash" aria-hidden="true"></i>删除
+                        </button>
+                    </div>
+                    <div class="pull-left search col-md-2">
+                        <input id="searchId" name="searchId" type="text" class="form-control" th:value="${id}"
+                               placeholder="">
+                    </div>
+                    <div class="pull-left search col-md-2">
+                        <input id="searchParentId" type="text" class="form-control" th:value="${parentId}"
+                               placeholder="父编号">
+                    </div>
+                    <div class="pull-left search col-md-2">
+                        <input id="searchAuthorId" type="text" class="form-control" th:value="${userId}"
+                               placeholder="用户编号">
+                    </div>
+                    <div class="pull-left search col-md-2">
+                        <input id="searchTitle" type="text" class="form-control"
+                               placeholder="标题">
+                    </div>
+                    <div class="columns pull-left">
+                        <button class="btn btn-success" onclick="reLoad()">查询</button>
+                    </div>
+                </div>
+
+                <table id="exampleTable" data-mobile-responsive="true">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+<div>
+    <script type="text/javascript">
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+        var s_resetPwd_h = 'hidden';
+    </script>
+</div>
+<div shiro:hasPermission="a5:comment:edit">
+    <script type="text/javascript">
+        s_edit_h = '';
+    </script>
+</div>
+<div shiro:hasPermission="a5:comment:remove">
+    <script type="text/javascript">
+        var s_remove_h = '';
+    </script>
+</div>
+<div shiro:hasPermission="a5:comment:resetPwd">
+    <script type="text/javascript">
+        var s_resetPwd_h = '';
+    </script>
+</div>
+</div>
+<div th:include="include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/a5/comment/comment.js"></script>
+</body>
+</html>

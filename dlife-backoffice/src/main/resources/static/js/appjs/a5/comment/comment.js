@@ -34,7 +34,8 @@ function load() {
                         offset: params.offset,
                         content: $('#searchTitle').val(),
                         wechatUserId: $('#searchAuthorId').val(),
-                        id:$('#searchId').val()
+                        parentId: $('#searchParentId').val(),
+                        id: $('#searchId').val()
                     };
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -49,15 +50,46 @@ function load() {
                     },
                     {
                         field: 'id',
-                        title: '回复编号'
+                        title: '回复编号',
+                        formatter: function (value, row, index) {
+                            if (value != '' && value != null)
+                                return '<a href="/a5/comment/detail/' + row.id + '">' + value + '</a>';
+                            else
+                                return value;
+                        }
                     },
                     {
                         field: 'parentId',
-                        title: '父编号'
+                        title: '父编号',
+                        formatter: function (value, row, index) {
+                            if (value != '' && value != null)
+                                return '<a href="/a5/comment/parent/' +value+ '">' + value + '</a>';
+                            else
+                                return value;
+                        }
                     },
                     {
                         field: 'objectId',
-                        title: '关联对象编号'
+                        title: '关联对象编号',
+                        formatter: function (value, row, index) {
+                            if (value != '' && value != null) {
+                                if (row.channel == 'FIT')
+                                // 小目标
+                                    return '<a href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                else if (row.channel == 'POINT_PRODUCT')
+                                // 积分商城
+                                    return '<a href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                else if (row.channel == 'FAQS')
+                                // 小问答
+                                    return '<a href="/a5/question/detail/' + row.objectId + '">' + value + '</a>';
+                                else if (row.channel == 'PIN')
+                                // 小邀约
+                                    return '<a href="/a5/fanActivity/detail/' + row.objectId + '">' + value + '</a>';
+                            } else
+                                return value;
+
+
+                        }
                     },
                     {
                         field: 'channel',

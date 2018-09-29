@@ -3,128 +3,103 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox float-e-margins">
-					<div class="ibox-content">
-						<form class="form-horizontal m-t" id="signupForm">
-						<input id="id" name="id" th:value="${comment.id}"  type="hidden">
-							<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="parentId" name="parentId" th:value="${comment.parentId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="objectId" name="objectId" th:value="${comment.objectId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="channel" name="channel" th:value="${comment.channel}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="wechatUserId" name="wechatUserId" th:value="${comment.wechatUserId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="avatar" name="avatar" th:value="${comment.avatar}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="nickName" name="nickName" th:value="${comment.nickName}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="content" name="content" th:value="${comment.content}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="rating1" name="rating1" th:value="${comment.rating1}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="rating2" name="rating2" th:value="${comment.rating2}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="rating3" name="rating3" th:value="${comment.rating3}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="createTime" name="createTime" th:value="${comment.createTime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="modifyTime" name="modifyTime" th:value="${comment.modifyTime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="replyCount" name="replyCount" th:value="${comment.replyCount}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="rpAvatar" name="rpAvatar" th:value="${comment.rpAvatar}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="rpNickName" name="rpNickName" th:value="${comment.rpNickName}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="rpWechatUserId" name="rpWechatUserId" th:value="${comment.rpWechatUserId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="module" name="module" th:value="${comment.module}" class="form-control" type="text">
-								</div>
-							</div>
-																					<div class="form-group">
-								<div class="col-sm-8 col-sm-offset-3">
-									<button type="submit" class="btn btn-primary">提交</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-	</div>
-	</div>
-	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/a5/comment/edit.js">
-	</script>
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${comment.id}" type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">父编号：</label>
+                            <div class="col-sm-8">
+                                <input id="parentId" name="parentId" th:value="${comment.parentId}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">相关联对象编号：</label>
+                            <div class="col-sm-8">
+                                <input id="objectId" name="objectId" th:value="${comment.objectId}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">类型：</label>
+                            <div class="col-sm-8">
+                                <input id="channel" name="channel" th:value="${comment.channel}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">微信编号：</label>
+                            <div class="col-sm-8">
+                                <input id="wechatUserId" name="wechatUserId" th:value="${comment.wechatUserId}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">头像：</label>
+                            <div class="col-sm-8">
+                                <input id="avatar" name="avatar" th:value="${comment.avatar}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">昵称：</label>
+                            <div class="col-sm-8">
+                                <input id="nickName" name="nickName" th:value="${comment.nickName}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">内容：</label>
+                            <div class="col-sm-8">
+                                <input id="content" name="content" th:value="${comment.content}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-8">
+                                <input id="createTime" name="createTime" th:value="${comment.createTime}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">最后修改时间：</label>
+                            <div class="col-sm-8">
+                                <input id="modifyTime" name="modifyTime" th:value="${comment.modifyTime}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">回复数：</label>
+                            <div class="col-sm-8">
+                                <input id="replyCount" name="replyCount" th:value="${comment.replyCount}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">模块：</label>
+                            <div class="col-sm-8">
+                                <input id="module" name="module" th:value="${comment.module}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/a5/comment/edit.js">
+</script>
 </body>
 </html>

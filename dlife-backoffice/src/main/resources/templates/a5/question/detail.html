@@ -7,10 +7,20 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="ibox float-e-margins">
-				<div class="ibox-content">
-                    <button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a shiro:hasPermission="a5:question:edit" th:href="@{'javascript:edit('+${question.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="ibox-title" style="padding-bottom: 0;">
+					<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
 					<span class="text-left font-bold" th:text="${question.title}"></span>&nbsp;&nbsp;&nbsp;&nbsp;详情
+					<div>&nbsp;</div>
+					<div class="gg-nav">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#basic_info" data-toggle="tab">详情</a></li>
+							<li><a href="#comment" data-toggle="tab" onclick="loadComment()">回复及评论</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="tab-content">
+					<div class="ibox-content tab-pane fade in active" id="basic_info">
+					<a shiro:hasPermission="a5:question:edit" th:href="@{'javascript:edit('+${question.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
 					<form class="form-horizontal m-t" id="signupForm">
 						<input id="id" name="id" th:value="${question.id}"  type="hidden">
 						<!--<label class="col-sm-3 control-label">标题：</label>-->
@@ -84,14 +94,38 @@
 							</div>
 						</div>
 					</form>
-                    <button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a shiro:hasPermission="a5:question:edit" th:href="@{'javascript:edit('+${question.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+					<!--comment-->
+					<div class="ibox-content tab-pane fade" id="comment">
+						<table id="commentTable" data-mobile-responsive="true">
+						</table>
+					</div>
+					<div class="ibox-title" style="padding-bottom: 0;">
+						<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;<div>&nbsp;</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <div th:include="include::footer"></div>
+<div>
+	<script type="text/javascript">
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+	</script>
+	<div shiro:hasPermission="a5:fitnessActivity:edit">
+		<script type="text/javascript">
+            s_edit_h = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="a5:fitnessActivity:edit">
+		<script type="text/javascript">
+            var s_remove_h = '';
+		</script>
+	</div>
+</div>
 <script type="text/javascript" src="/js/appjs/a5/question/edit.js">
 </script>
 <script type="text/javascript" src="/js/appjs/a5/question/question.js">

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.AttendeeDao">
+
+	<select id="get" resultType="com.bootdo.a5.domain.AttendeeDO">
+		select `id`,`wechat_user_id`,`nick_name`,`avatar`,`participation_time`,`activitiy_tile`,`pin_fan_activity_id` from attendee where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.a5.domain.AttendeeDO">
+		select `id`,`wechat_user_id`,`nick_name`,`avatar`,`participation_time`,`activitiy_tile`,`pin_fan_activity_id` from attendee
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="participationTime != null and participationTime != ''"> and participation_time = #{participationTime} </if>
+		  		  <if test="activitiyTile != null and activitiyTile != ''"> and activitiy_tile = #{activitiyTile} </if>
+		  		  <if test="pinFanActivityId != null and pinFanActivityId != ''"> and pin_fan_activity_id = #{pinFanActivityId} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from attendee
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="participationTime != null and participationTime != ''"> and participation_time = #{participationTime} </if>
+		  		  <if test="activitiyTile != null and activitiyTile != ''"> and activitiy_tile = #{activitiyTile} </if>
+		  		  <if test="pinFanActivityId != null and pinFanActivityId != ''"> and pin_fan_activity_id = #{pinFanActivityId} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.a5.domain.AttendeeDO" useGeneratedKeys="true" keyProperty="id">
+		insert into attendee
+		(
+			`wechat_user_id`, 
+			`nick_name`, 
+			`avatar`, 
+			`participation_time`, 
+			`activitiy_tile`, 
+			`pin_fan_activity_id`
+		)
+		values
+		(
+			#{wechatUserId}, 
+			#{nickName}, 
+			#{avatar}, 
+			#{participationTime}, 
+			#{activitiyTile}, 
+			#{pinFanActivityId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.a5.domain.AttendeeDO">
+		update attendee 
+		<set>
+			<if test="wechatUserId != null">`wechat_user_id` = #{wechatUserId}, </if>
+			<if test="nickName != null">`nick_name` = #{nickName}, </if>
+			<if test="avatar != null">`avatar` = #{avatar}, </if>
+			<if test="participationTime != null">`participation_time` = #{participationTime}, </if>
+			<if test="activitiyTile != null">`activitiy_tile` = #{activitiyTile}, </if>
+			<if test="pinFanActivityId != null">`pin_fan_activity_id` = #{pinFanActivityId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from attendee where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from attendee where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

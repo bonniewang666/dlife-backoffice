@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.ActivityParticipationDao">
+
+	<select id="get" resultType="com.bootdo.a5.domain.ActivityParticipationDO">
+		select `id`,`wechat_user_id`,`nick_name`,`avatar`,`project`,`participation_time`,`current_continue_days`,`fitness_activity_id`,`latest_clockin_time`,`longest_continue_days`,`total_clockin_days`,`total_participate_days` from activity_participation where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.a5.domain.ActivityParticipationDO">
+		select `id`,`wechat_user_id`,`nick_name`,`avatar`,`project`,`participation_time`,`current_continue_days`,`fitness_activity_id`,`latest_clockin_time`,`longest_continue_days`,`total_clockin_days`,`total_participate_days` from activity_participation
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="project != null and project != ''"> and project = #{project} </if>
+		  		  <if test="participationTime != null and participationTime != ''"> and participation_time = #{participationTime} </if>
+		  		  <if test="currentContinueDays != null and currentContinueDays != ''"> and current_continue_days = #{currentContinueDays} </if>
+		  		  <if test="fitnessActivityId != null and fitnessActivityId != ''"> and fitness_activity_id = #{fitnessActivityId} </if>
+		  		  <if test="latestClockinTime != null and latestClockinTime != ''"> and latest_clockin_time = #{latestClockinTime} </if>
+		  		  <if test="longestContinueDays != null and longestContinueDays != ''"> and longest_continue_days = #{longestContinueDays} </if>
+		  		  <if test="totalClockinDays != null and totalClockinDays != ''"> and total_clockin_days = #{totalClockinDays} </if>
+		  		  <if test="totalParticipateDays != null and totalParticipateDays != ''"> and total_participate_days = #{totalParticipateDays} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from activity_participation
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="project != null and project != ''"> and project = #{project} </if>
+		  		  <if test="participationTime != null and participationTime != ''"> and participation_time = #{participationTime} </if>
+		  		  <if test="currentContinueDays != null and currentContinueDays != ''"> and current_continue_days = #{currentContinueDays} </if>
+		  		  <if test="fitnessActivityId != null and fitnessActivityId != ''"> and fitness_activity_id = #{fitnessActivityId} </if>
+		  		  <if test="latestClockinTime != null and latestClockinTime != ''"> and latest_clockin_time = #{latestClockinTime} </if>
+		  		  <if test="longestContinueDays != null and longestContinueDays != ''"> and longest_continue_days = #{longestContinueDays} </if>
+		  		  <if test="totalClockinDays != null and totalClockinDays != ''"> and total_clockin_days = #{totalClockinDays} </if>
+		  		  <if test="totalParticipateDays != null and totalParticipateDays != ''"> and total_participate_days = #{totalParticipateDays} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.a5.domain.ActivityParticipationDO" useGeneratedKeys="true" keyProperty="id">
+		insert into activity_participation
+		(
+			`wechat_user_id`, 
+			`nick_name`, 
+			`avatar`, 
+			`project`, 
+			`participation_time`, 
+			`current_continue_days`, 
+			`fitness_activity_id`, 
+			`latest_clockin_time`, 
+			`longest_continue_days`, 
+			`total_clockin_days`, 
+			`total_participate_days`
+		)
+		values
+		(
+			#{wechatUserId}, 
+			#{nickName}, 
+			#{avatar}, 
+			#{project}, 
+			#{participationTime}, 
+			#{currentContinueDays}, 
+			#{fitnessActivityId}, 
+			#{latestClockinTime}, 
+			#{longestContinueDays}, 
+			#{totalClockinDays}, 
+			#{totalParticipateDays}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.a5.domain.ActivityParticipationDO">
+		update activity_participation 
+		<set>
+			<if test="wechatUserId != null">`wechat_user_id` = #{wechatUserId}, </if>
+			<if test="nickName != null">`nick_name` = #{nickName}, </if>
+			<if test="avatar != null">`avatar` = #{avatar}, </if>
+			<if test="project != null">`project` = #{project}, </if>
+			<if test="participationTime != null">`participation_time` = #{participationTime}, </if>
+			<if test="currentContinueDays != null">`current_continue_days` = #{currentContinueDays}, </if>
+			<if test="fitnessActivityId != null">`fitness_activity_id` = #{fitnessActivityId}, </if>
+			<if test="latestClockinTime != null">`latest_clockin_time` = #{latestClockinTime}, </if>
+			<if test="longestContinueDays != null">`longest_continue_days` = #{longestContinueDays}, </if>
+			<if test="totalClockinDays != null">`total_clockin_days` = #{totalClockinDays}, </if>
+			<if test="totalParticipateDays != null">`total_participate_days` = #{totalParticipateDays}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from activity_participation where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from activity_participation where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

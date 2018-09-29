@@ -49,7 +49,10 @@ function load() {
                     },
                     {
                         field: 'id',
-                        title: '问题编号'
+                        title: '问题编号',
+                        formatter: function (value, row, index) {
+                            return '<a href="/a5/question/detail/' + row.id + '">' + value + '</a>';
+                        }
                     },
                     {
                         field: 'title',
@@ -211,3 +214,5 @@ function batchRemove() {
 
     });
 }
+
+

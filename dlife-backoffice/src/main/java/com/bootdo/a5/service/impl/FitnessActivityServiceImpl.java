@@ -1,5 +1,6 @@
 package com.bootdo.a5.service.impl;
 
+import com.bootdo.a5.domain.FitnessActivityDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.bootdo.a5.dao.FitnessActivityDao;
-import com.bootdo.a5.domain.FitnessActivityDO;
 import com.bootdo.a5.service.FitnessActivityService;
 
 

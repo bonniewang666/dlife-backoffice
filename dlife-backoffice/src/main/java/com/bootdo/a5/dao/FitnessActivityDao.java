@@ -1,10 +1,9 @@
 package com.bootdo.a5.dao;
 
-import com.bootdo.a5.domain.FitnessActivityDO;
-
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.a5.domain.FitnessActivityDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
