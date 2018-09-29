@@ -238,6 +238,12 @@
             <version>1.9.2</version>
         </dependency>
 
+        <!--增加liquidbase组件-->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
         <!--war包部署需要-->
         <!--<dependency>-->
         <!--<groupId>org.springframework.boot</groupId>-->

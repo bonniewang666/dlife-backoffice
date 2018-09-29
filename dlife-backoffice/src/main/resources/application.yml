@@ -28,6 +28,8 @@ spring:
     type: ehcache
     ehcache:
       config: classpath:config/ehcache.xml
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.xml
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
