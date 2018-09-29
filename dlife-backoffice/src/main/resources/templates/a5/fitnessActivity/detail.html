@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a shiro:hasPermission="a5:fitnessActivity:edit" th:href="@{'javascript:edit('+${fitnessActivity.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+						<span class="text-left font-bold" th:text="${fitnessActivity.title}"></span>&nbsp;&nbsp;&nbsp;&nbsp;详情
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${fitnessActivity.id}"  type="hidden">
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label">发起人微信编号：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.wechatUserId}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">发起人头像：</label>
+								<div class="col-sm-8">
+									<img id="avatar" name="avatar" th:src="${fitnessActivity.avatar}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">发起人昵称：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.nickName}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">项目名称：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.project}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">公司角色：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.companyRole}"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-3 control-label">活动描述：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.descrption}"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">开始时间：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.activityStartTime}"/>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">结束时间：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.activityEndTime}"/>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">评论数量：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.commentCount}"/>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">最后修改时间：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.modifyTime}"/>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">浏览数：</label>
+								<div class="col-sm-8">
+									<h3 th:text="${fitnessActivity.readingCount}"/>
+								</div>
+							</div>
+						</form>
+						<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a shiro:hasPermission="a5:fitnessActivity:edit" th:href="@{'javascript:edit('+${fitnessActivity.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/a5/fitnessActivity/edit.js">
+	</script>
+	<script type="text/javascript" src="/js/appjs/a5/fitnessActivity/fitnessActivity.js">
+	</script>
+</body>
+</html>

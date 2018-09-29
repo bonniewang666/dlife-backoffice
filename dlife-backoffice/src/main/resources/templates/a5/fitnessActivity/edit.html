@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<button type="submit" class="btn btn-primary">保存</button>
+							<input id="id" name="id" th:value="${fitnessActivity.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">活动标题：</label>
+								<div class="col-sm-8">
+									<input id="title" name="title" th:value="${fitnessActivity.title}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">活动描述：</label>
+								<div class="col-sm-8">
+									<input id="descrption" name="descrption" th:value="${fitnessActivity.descrption}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">用户id 创建人：</label>
+								<div class="col-sm-8">
+									<input id="wechatUserId" name="wechatUserId" th:value="${fitnessActivity.wechatUserId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">昵称：</label>
+								<div class="col-sm-8">
+									<input id="nickName" name="nickName" th:value="${fitnessActivity.nickName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">头像：</label>
+								<div class="col-sm-8">
+									<input id="avatar" name="avatar" th:value="${fitnessActivity.avatar}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">项目名称：</label>
+								<div class="col-sm-8">
+									<input id="project" name="project" th:value="${fitnessActivity.project}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">角色：</label>
+								<div class="col-sm-8">
+									<input id="companyRole" name="companyRole" th:value="${fitnessActivity.companyRole}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报名开始时间：</label>
+								<div class="col-sm-8">
+									<input id="signStartTime" name="signStartTime" th:value="${fitnessActivity.signStartTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">报名截至时间：</label>
+								<div class="col-sm-8">
+									<input id="signEndTime" name="signEndTime" th:value="${fitnessActivity.signEndTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">开始时间：</label>
+								<div class="col-sm-8">
+									<input id="activityStartTime" name="activityStartTime" th:value="${fitnessActivity.activityStartTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">结束时间：</label>
+								<div class="col-sm-8">
+									<input id="activityEndTime" name="activityEndTime" th:value="${fitnessActivity.activityEndTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">评论数量：</label>
+								<div class="col-sm-8">
+									<input id="commentCount" name="commentCount" th:value="${fitnessActivity.commentCount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+									<input id="modifyTime" name="modifyTime" th:value="${fitnessActivity.modifyTime}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+									<input id="readingCount" name="readingCount" th:value="${fitnessActivity.readingCount}" class="form-control" type="text">
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary">保存</button>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/a5/fitnessActivity/edit.js">
+	</script>
+</body>
+</html>

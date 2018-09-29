@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.WechatUserDao">
+
+	<select id="get" resultType="com.bootdo.a5.domain.WechatUserDO">
+		select `id`,`open_id`,`wechat_code`,`eid`,`user_name`,`nick_name`,`avatar`,`mobile_num`,`project`,`seat`,`introduce`,`sex`,`company_role`,`cook_flag`,`intesting`,`skill`,`create_time`,`modify_time`,`total_point` from wechat_user where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.a5.domain.WechatUserDO">
+		select `id`,`open_id`,`wechat_code`,`eid`,`user_name`,`nick_name`,`avatar`,`mobile_num`,`project`,`seat`,`introduce`,`sex`,`company_role`,`cook_flag`,`intesting`,`skill`,`create_time`,`modify_time`,`total_point` from wechat_user
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="openId != null and openId != ''"> and open_id = #{openId} </if>
+		  		  <if test="wechatCode != null and wechatCode != ''"> and wechat_code = #{wechatCode} </if>
+		  		  <if test="eid != null and eid != ''"> and eid = #{eid} </if>
+		  		  <if test="userName != null and userName != ''"> and user_name = #{userName} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="mobileNum != null and mobileNum != ''"> and mobile_num = #{mobileNum} </if>
+		  		  <if test="project != null and project != ''"> and project = #{project} </if>
+		  		  <if test="seat != null and seat != ''"> and seat = #{seat} </if>
+		  		  <if test="introduce != null and introduce != ''"> and introduce = #{introduce} </if>
+		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
+		  		  <if test="companyRole != null and companyRole != ''"> and company_role = #{companyRole} </if>
+		  		  <if test="cookFlag != null and cookFlag != ''"> and cook_flag = #{cookFlag} </if>
+		  		  <if test="intesting != null and intesting != ''"> and intesting = #{intesting} </if>
+		  		  <if test="skill != null and skill != ''"> and skill = #{skill} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="modifyTime != null and modifyTime != ''"> and modify_time = #{modifyTime} </if>
+		  		  <if test="totalPoint != null and totalPoint != ''"> and total_point = #{totalPoint} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from wechat_user
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="openId != null and openId != ''"> and open_id = #{openId} </if>
+		  		  <if test="wechatCode != null and wechatCode != ''"> and wechat_code = #{wechatCode} </if>
+		  		  <if test="eid != null and eid != ''"> and eid = #{eid} </if>
+		  		  <if test="userName != null and userName != ''"> and user_name = #{userName} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="mobileNum != null and mobileNum != ''"> and mobile_num = #{mobileNum} </if>
+		  		  <if test="project != null and project != ''"> and project = #{project} </if>
+		  		  <if test="seat != null and seat != ''"> and seat = #{seat} </if>
+		  		  <if test="introduce != null and introduce != ''"> and introduce = #{introduce} </if>
+		  		  <if test="sex != null and sex != ''"> and sex = #{sex} </if>
+		  		  <if test="companyRole != null and companyRole != ''"> and company_role = #{companyRole} </if>
+		  		  <if test="cookFlag != null and cookFlag != ''"> and cook_flag = #{cookFlag} </if>
+		  		  <if test="intesting != null and intesting != ''"> and intesting = #{intesting} </if>
+		  		  <if test="skill != null and skill != ''"> and skill = #{skill} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="modifyTime != null and modifyTime != ''"> and modify_time = #{modifyTime} </if>
+		  		  <if test="totalPoint != null and totalPoint != ''"> and total_point = #{totalPoint} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.a5.domain.WechatUserDO" useGeneratedKeys="true" keyProperty="id">
+		insert into wechat_user
+		(
+			`open_id`, 
+			`wechat_code`, 
+			`eid`, 
+			`user_name`, 
+			`nick_name`, 
+			`avatar`, 
+			`mobile_num`, 
+			`project`, 
+			`seat`, 
+			`introduce`, 
+			`sex`, 
+			`company_role`, 
+			`cook_flag`, 
+			`intesting`, 
+			`skill`, 
+			`create_time`, 
+			`modify_time`, 
+			`total_point`
+		)
+		values
+		(
+			#{openId}, 
+			#{wechatCode}, 
+			#{eid}, 
+			#{userName}, 
+			#{nickName}, 
+			#{avatar}, 
+			#{mobileNum}, 
+			#{project}, 
+			#{seat}, 
+			#{introduce}, 
+			#{sex}, 
+			#{companyRole}, 
+			#{cookFlag}, 
+			#{intesting}, 
+			#{skill}, 
+			#{createTime}, 
+			#{modifyTime}, 
+			#{totalPoint}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.a5.domain.WechatUserDO">
+		update wechat_user 
+		<set>
+			<if test="openId != null">`open_id` = #{openId}, </if>
+			<if test="wechatCode != null">`wechat_code` = #{wechatCode}, </if>
+			<if test="eid != null">`eid` = #{eid}, </if>
+			<if test="userName != null">`user_name` = #{userName}, </if>
+			<if test="nickName != null">`nick_name` = #{nickName}, </if>
+			<if test="avatar != null">`avatar` = #{avatar}, </if>
+			<if test="mobileNum != null">`mobile_num` = #{mobileNum}, </if>
+			<if test="project != null">`project` = #{project}, </if>
+			<if test="seat != null">`seat` = #{seat}, </if>
+			<if test="introduce != null">`introduce` = #{introduce}, </if>
+			<if test="sex != null">`sex` = #{sex}, </if>
+			<if test="companyRole != null">`company_role` = #{companyRole}, </if>
+			<if test="cookFlag != null">`cook_flag` = #{cookFlag}, </if>
+			<if test="intesting != null">`intesting` = #{intesting}, </if>
+			<if test="skill != null">`skill` = #{skill}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="modifyTime != null">`modify_time` = #{modifyTime}, </if>
+			<if test="totalPoint != null">`total_point` = #{totalPoint}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from wechat_user where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from wechat_user where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

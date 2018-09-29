@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.CommentDao">
+
+	<select id="get" resultType="com.bootdo.a5.domain.CommentDO">
+		select `id`,`parent_id`,`object_id`,`channel`,`wechat_user_id`,`avatar`,`nick_name`,`content`,`rating_1`,`rating_2`,`rating_3`,`create_time`,`modify_time`,`reply_count`,`rp_avatar`,`rp_nick_name`,`rp_wechat_user_id`,`module` from comment where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.a5.domain.CommentDO">
+		select `id`,`parent_id`,`object_id`,`channel`,`wechat_user_id`,`avatar`,`nick_name`,`content`,`rating_1`,`rating_2`,`rating_3`,`create_time`,`modify_time`,`reply_count`,`rp_avatar`,`rp_nick_name`,`rp_wechat_user_id`,`module` from comment
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+		  		  <if test="objectId != null and objectId != ''"> and object_id = #{objectId} </if>
+		  		  <if test="channel != null and channel != ''"> and channel = #{channel} </if>
+		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="content != null and content != ''"> and content like #{content} </if>
+		  		  <if test="rating1 != null and rating1 != ''"> and rating_1 = #{rating1} </if>
+		  		  <if test="rating2 != null and rating2 != ''"> and rating_2 = #{rating2} </if>
+		  		  <if test="rating3 != null and rating3 != ''"> and rating_3 = #{rating3} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="modifyTime != null and modifyTime != ''"> and modify_time = #{modifyTime} </if>
+		  		  <if test="replyCount != null and replyCount != ''"> and reply_count = #{replyCount} </if>
+		  		  <if test="rpAvatar != null and rpAvatar != ''"> and rp_avatar = #{rpAvatar} </if>
+		  		  <if test="rpNickName != null and rpNickName != ''"> and rp_nick_name = #{rpNickName} </if>
+		  		  <if test="rpWechatUserId != null and rpWechatUserId != ''"> and rp_wechat_user_id = #{rpWechatUserId} </if>
+		  		  <if test="module != null and module != ''"> and module = #{module} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from comment
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+		  		  <if test="objectId != null and objectId != ''"> and object_id = #{objectId} </if>
+		  		  <if test="channel != null and channel != ''"> and channel = #{channel} </if>
+		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
+		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
+		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="rating1 != null and rating1 != ''"> and rating_1 = #{rating1} </if>
+		  		  <if test="rating2 != null and rating2 != ''"> and rating_2 = #{rating2} </if>
+		  		  <if test="rating3 != null and rating3 != ''"> and rating_3 = #{rating3} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		  		  <if test="modifyTime != null and modifyTime != ''"> and modify_time = #{modifyTime} </if>
+		  		  <if test="replyCount != null and replyCount != ''"> and reply_count = #{replyCount} </if>
+		  		  <if test="rpAvatar != null and rpAvatar != ''"> and rp_avatar = #{rpAvatar} </if>
+		  		  <if test="rpNickName != null and rpNickName != ''"> and rp_nick_name = #{rpNickName} </if>
+		  		  <if test="rpWechatUserId != null and rpWechatUserId != ''"> and rp_wechat_user_id = #{rpWechatUserId} </if>
+		  		  <if test="module != null and module != ''"> and module = #{module} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.a5.domain.CommentDO" useGeneratedKeys="true" keyProperty="id">
+		insert into comment
+		(
+			`parent_id`, 
+			`object_id`, 
+			`channel`, 
+			`wechat_user_id`, 
+			`avatar`, 
+			`nick_name`, 
+			`content`, 
+			`rating_1`, 
+			`rating_2`, 
+			`rating_3`, 
+			`create_time`, 
+			`modify_time`, 
+			`reply_count`, 
+			`rp_avatar`, 
+			`rp_nick_name`, 
+			`rp_wechat_user_id`, 
+			`module`
+		)
+		values
+		(
+			#{parentId}, 
+			#{objectId}, 
+			#{channel}, 
+			#{wechatUserId}, 
+			#{avatar}, 
+			#{nickName}, 
+			#{content}, 
+			#{rating1}, 
+			#{rating2}, 
+			#{rating3}, 
+			#{createTime}, 
+			#{modifyTime}, 
+			#{replyCount}, 
+			#{rpAvatar}, 
+			#{rpNickName}, 
+			#{rpWechatUserId}, 
+			#{module}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.a5.domain.CommentDO">
+		update comment 
+		<set>
+			<if test="parentId != null">`parent_id` = #{parentId}, </if>
+			<if test="objectId != null">`object_id` = #{objectId}, </if>
+			<if test="channel != null">`channel` = #{channel}, </if>
+			<if test="wechatUserId != null">`wechat_user_id` = #{wechatUserId}, </if>
+			<if test="avatar != null">`avatar` = #{avatar}, </if>
+			<if test="nickName != null">`nick_name` = #{nickName}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="rating1 != null">`rating_1` = #{rating1}, </if>
+			<if test="rating2 != null">`rating_2` = #{rating2}, </if>
+			<if test="rating3 != null">`rating_3` = #{rating3}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="modifyTime != null">`modify_time` = #{modifyTime}, </if>
+			<if test="replyCount != null">`reply_count` = #{replyCount}, </if>
+			<if test="rpAvatar != null">`rp_avatar` = #{rpAvatar}, </if>
+			<if test="rpNickName != null">`rp_nick_name` = #{rpNickName}, </if>
+			<if test="rpWechatUserId != null">`rp_wechat_user_id` = #{rpWechatUserId}, </if>
+			<if test="module != null">`module` = #{module}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from comment where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from comment where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
