@@ -8,4 +8,5 @@
   <include file="changelog/bootdo.sql" relativeToChangelogFile="true"/>
   <include file="changelog/sys_menu_0929.sql" relativeToChangelogFile="true"/>
   <include file="changelog/sys_menu_092902.sql" relativeToChangelogFile="true"/>
+  <include file="changelog/pin_activity_093001.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

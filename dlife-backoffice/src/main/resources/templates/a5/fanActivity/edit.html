@@ -2,180 +2,251 @@
 <html>
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+<head th:include="system/user/include :: header"></head>
+
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox float-e-margins">
-					<div class="ibox-content">
-						<form class="form-horizontal m-t" id="signupForm">
-							<button type="submit" class="btn btn-primary">保存</button>
-							<input id="id" name="id" th:value="${fanActivity.id}"  type="hidden">
-							<div class="form-group">	
-								<label class="col-sm-3 control-label">发布者id：</label>
-								<div class="col-sm-8">
-									<input id="wechatUserId" name="wechatUserId" th:value="${fanActivity.wechatUserId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">头像：</label>
-								<div class="col-sm-8">
-									<img id="avatar" name="avatar" src="${fanActivity.avatar}" th:src="${fanActivity.avatar}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">昵称：</label>
-								<div class="col-sm-8">
-									<input id="nickName" name="nickName" th:value="${fanActivity.nickName}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">活动类型：</label>
-								<div class="col-sm-8">
-									<input id="activitiyType" name="activitiyType" th:value="${fanActivity.activitiyType}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">活动名称：</label>
-								<div class="col-sm-8">
-									<input id="activitiyTile" name="activitiyTile" th:value="${fanActivity.activitiyTile}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">人均预算：</label>
-								<div class="col-sm-8">
-									<input id="budget" name="budget" th:value="${fanActivity.budget}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">活动地址：</label>
-								<div class="col-sm-8">
-									<input id="activitiyAddre" name="activitiyAddre" th:value="${fanActivity.activitiyAddre}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">活动描述：</label>
-								<div class="col-sm-8">
-									<input id="descrption" name="descrption" th:value="${fanActivity.descrption}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">组织者：</label>
-								<div class="col-sm-8">
-									<input id="organizeUser" name="organizeUser" th:value="${fanActivity.organizeUser}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">封面图：</label>
-								<div class="col-sm-8">
-									<input id="coverPicture" name="coverPicture" th:value="${fanActivity.coverPicture}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">约定时间：</label>
-								<div class="col-sm-8">
-									<input id="appointDatetime" name="appointDatetime" th:value="${fanActivity.appointDatetime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">约定结束时间：</label>
-								<div class="col-sm-8">
-									<input id="appointEndDatetime" name="appointEndDatetime" th:value="${fanActivity.appointEndDatetime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">商家URL：</label>
-								<div class="col-sm-8">
-									<input id="salerUrl" name="salerUrl" th:value="${fanActivity.salerUrl}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">最少参与者：</label>
-								<div class="col-sm-8">
-									<input id="lowerLimit" name="lowerLimit" th:value="${fanActivity.lowerLimit}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">最多参与者：</label>
-								<div class="col-sm-8">
-									<input id="upperLimit" name="upperLimit" th:value="${fanActivity.upperLimit}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">支付类型：</label>
-								<div class="col-sm-8">
-									<input id="payType" name="payType" th:value="${fanActivity.payType}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">截至日期：</label>
-								<div class="col-sm-8">
-									<input id="deadline" name="deadline" th:value="${fanActivity.deadline}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">备注：</label>
-								<div class="col-sm-8">
-									<input id="jhiComment" name="jhiComment" th:value="${fanActivity.jhiComment}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">活动状态 0-新建 1-完成 2-取消：</label>
-								<div class="col-sm-8">
-									<input id="status" name="status" th:value="${fanActivity.status}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">评论数量：</label>
-								<div class="col-sm-8">
-									<input id="commentCount" name="commentCount" th:value="${fanActivity.commentCount}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="readingCount" name="readingCount" th:value="${fanActivity.readingCount}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="modifyTime" name="modifyTime" th:value="${fanActivity.modifyTime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="joinStatus" name="joinStatus" th:value="${fanActivity.joinStatus}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="official" name="official" th:value="${fanActivity.official}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="stick" name="stick" th:value="${fanActivity.stick}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="stickOrder" name="stickOrder" th:value="${fanActivity.stickOrder}" class="form-control" type="text">
-								</div>
-							</div>
-							<button type="submit" class="btn btn-primary">保存</button>
-						</form>
-					</div>
-				</div>
-			</div>
-	</div>
-	</div>
-	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/a5/fanActivity/edit.js">
-	</script>
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="fanActivityForm">
+                        <input id="id" name="id" th:value="${fanActivity.id}" type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">发布者微信号：</label>
+                            <div class="col-sm-8">
+                                <input id="wechatUserId" name="wechatUserId" th:value="${fanActivity.wechatUserId}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">头像：</label>
+                            <div class="col-sm-8">
+                                <img id="avatar" name="avatar" src="${fanActivity.avatar}"
+                                     th:src="${fanActivity.avatar}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">昵称：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${fanActivity.nickName}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动名称：</label>
+                            <div class="col-sm-8">
+                                <input id="activitiyTile" name="activitiyTile" th:value="${fanActivity.activitiyTile}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动描述：</label>
+                            <div class="col-sm-8">
+                                <textarea id="descrption" name="descrption" cols="50" rows="10" >[[${fanActivity
+                                    .descrption}]]</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否官方：</label>
+                            <div class="col-sm-8">
+                                是 <input type="radio" name="official" value="1" th:field="*{fanActivity.official}"
+                                         class="radio-inline">
+                                否 <input type="radio" name="official" value="0" th:field="*{fanActivity.official}"
+                                         class="radio-inline">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否置顶：</label>
+                            <div class="col-sm-8">
+                                是 <input type="radio" name="setTop" value="1" th:field="*{fanActivity.setTop}"
+                                         class="radio-inline">
+                                否 <input type="radio" name="setTop" value="0" th:field="*{fanActivity.setTop}"
+                                         class="radio-inline">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">置顶顺序：</label>
+                            <div class="col-sm-8">
+                                <input id="numOrder" name="numOrder" th:value="${fanActivity.numOrder}" class="form-control" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动类型：</label>
+                            <div class="col-sm-8">
+                                <input id="activitiyType" name="activitiyType" th:value="${fanActivity.activitiyType}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">人均预算：</label>
+                            <div class="col-sm-8">
+                                <input id="budget" name="budget" th:value="${fanActivity.budget}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动地址：</label>
+                            <div class="col-sm-8">
+                                <input id="activitiyAddre" name="activitiyAddre"
+                                       th:value="${fanActivity.activitiyAddre}" class="form-control" type="text">
+                            </div>
+                        </div>
+
+
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">组织者：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="organizeUser" name="organizeUser" th:value="${fanActivity.organizeUser}"-->
+                                       <!--class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">封面图：</label>
+                            <div class="col-sm-8">
+                                <input id="coverPicture" name="coverPicture" th:value="${fanActivity.coverPicture}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">约定时间：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--&lt;!&ndash;<input id="appointDatetime" name="appointDatetime"&ndash;&gt;-->
+                                       <!--&lt;!&ndash;th:value="${fanActivity.appointDatetime}" class="form-control" type="text">&ndash;&gt;-->
+
+                                <!--<input type="text" class="laydate-icon layer-date form-control" id="appointDatetime"-->
+                                       <!--name="appointDatetime"-->
+                                       <!--th:value="${fanActivity.appointDatetime}==null?null:${#dates.format(fanActivity.appointDatetime,'yyyy-MM-dd hh:MM')}"-->
+                                       <!--placeholder="请选择约定时间"-->
+                                       <!--onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:MM'})" style="background-color: #fff;"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">约定结束时间：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input type="text" class="laydate-icon layer-date form-control" id="appointEndDatetime"-->
+                                       <!--name="appointEndDatetime" th:value="${fanActivity.appointEndDatetime}==null?null:${#dates.format(fanActivity.appointEndDatetime,'yyyy-MM-dd hh:MM')}"-->
+                                       <!--placeholder="请选择约定结束时间"-->
+                                       <!--onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:MM'})" style="background-color: #fff;"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商家URL：</label>
+                            <div class="col-sm-8">
+                                <input id="salerUrl" name="salerUrl" th:value="${fanActivity.salerUrl}"
+                                       class="form-control" type="text"><a th:href="${fanActivity.salerUrl}">查看</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">最少参与者：</label>
+                            <div class="col-sm-8">
+                                <input id="lowerLimit" name="lowerLimit" th:value="${fanActivity.lowerLimit}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">最多参与者：</label>
+                            <div class="col-sm-8">
+                                <input id="upperLimit" name="upperLimit" th:value="${fanActivity.upperLimit}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付类型：</label>
+                            <div class="col-sm-8">
+                                <input id="payType" name="payType" th:value="${fanActivity.payType}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">截至日期：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="laydate-icon layer-date form-control" id="deadline"
+                                       name="deadline"
+                                       th:value="${fanActivity.deadline}==null?null:${#dates.format(fanActivity.deadline,'yyyy-MM-dd HH:mm:ss')}"
+                                       placeholder="请选择截至日期"
+                                       onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
+                                       style="background-color: #fff;"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注：</label>
+                            <div class="col-sm-8">
+                                <!--<input id="jhiComment" name="jhiComment" th:value="${fanActivity.jhiComment}"-->
+                                       <!--class="form-control" type="text">-->
+                                <textarea id="jhiComment" name="jhiComment" cols="50" rows="10" >[[${fanActivity.jhiComment}]]</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">活动状态 0-新建 1-完成 2-取消：</label>
+                            <div class="col-sm-8">
+                                <input id="status" name="status" th:value="${fanActivity.status}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">评论数量：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${fanActivity.commentCount}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">浏览量：</label>
+                            <div class="col-sm-8">
+                                <input id="readingCount" name="readingCount" th:value="${fanActivity.readingCount}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">最后修改时间：</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="laydate-icon layer-date form-control" id="modifyTime"
+                                       name="modifyTime"
+                                       th:value="${fanActivity.modifyTime}==null?null:${#dates.format(fanActivity.modifyTime,'yyyy-MM-dd HH:mm:ss')}"
+                                       placeholder="请选择最后修改时间"
+                                       onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
+                                       style="background-color: #fff;"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">参加状态：</label>
+                            <div class="col-sm-8">
+                                <input id="joinStatus" name="joinStatus" th:value="${fanActivity.joinStatus}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="stick" name="stick" th:value="${fanActivity.stick}" class="form-control"-->
+                                       <!--type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label class="col-sm-3 control-label">：</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<input id="stickOrder" name="stickOrder" th:value="${fanActivity.stickOrder}"-->
+                                       <!--class="form-control" type="text">-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                        <button id="submitBtn" class="btn btn-primary">保存</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<div th:include="system/user/include :: footer"></div>
+<script type="text/javascript" src="/js/appjs/a5/fanActivity/edit.js">
+</script>
 </body>
 </html>

@@ -3,222 +3,241 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox float-e-margins">
-					<div class="ibox-title" style="padding-bottom: 0;">
-						<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="text-left font-bold" th:text="${fanActivity.activitiyTile}"></span>&nbsp;&nbsp;&nbsp;&nbsp;详情
-						<div>&nbsp;</div>
-						<div class="gg-nav">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#basic_info" data-toggle="tab">详情</a></li>
-								<li><a href="#attendee" data-toggle="tab" onclick="loadAttendee()">参与人</a></li>
-								<li><a href="#comment" data-toggle="tab" onclick="loadComment()">评论</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="tab-content">
-						<div class="ibox-content tab-pane fade in active" id="basic_info">
-						<a shiro:hasPermission="a5:fanActivity:edit" th:href="@{'javascript:edit('+${fanActivity.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<form class="form-horizontal m-t" id="signupForm">
-						<input id="id" name="id" th:value="${fanActivity.id}"  type="hidden">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">是否官方：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.official}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">发起人微信编号：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.wechatUserId}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">发起人头像：</label>
-								<div class="col-sm-8">
-									<img id="avatar" name="avatar" th:src="${fanActivity.avatar}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">发起人昵称：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.nickName}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">活动类型：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.activitiyType}"/>
-								</div>
-							</div>
-							<!--<div class="form-group">	-->
-								<!--<label class="col-sm-3 control-label">活动名称：</label>-->
-								<!--<div class="col-sm-8">-->
-									<!--<input id="activitiyTile" name="activitiyTile" th:value="${fanActivity.activitiyTile}" class="form-control" type="text">-->
-								<!--</div>-->
-							<!--</div>-->
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="padding-bottom: 0;">
+                    <button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="text-left font-bold" th:text="${fanActivity.activitiyTile}"></span>&nbsp;&nbsp;&nbsp;&nbsp;小邀约详情
+                    <div>&nbsp;</div>
+                    <div class="gg-nav">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#basic_info" data-toggle="tab">详情</a></li>
+                            <li><a href="#attendee" data-toggle="tab" onclick="loadAttendee()">参与人</a></li>
+                            <li><a href="#comment" data-toggle="tab" onclick="loadComment()">评论</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="ibox-content tab-pane fade in active" id="basic_info">
+                        <a shiro:hasPermission="a5:fanActivity:edit"
+                           th:href="@{'javascript:edit('+${fanActivity.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <form class="form-horizontal m-t" id="signupForm">
+                            <input id="id" name="id" th:value="${fanActivity.id}" type="hidden">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">发起人微信编号：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.wechatUserId}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">发起人头像：</label>
+                                <div class="col-sm-8">
+                                    <img id="avatar" name="avatar" th:src="${fanActivity.avatar}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">发起人昵称：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.nickName}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">活动描述：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(fanActivity.descrption),'n','&lt;br/&gt;'))}"/>
+                                </div>
+                            </div>
 
-							<div class="form-group">
-								<label class="col-sm-3 control-label">人均预算：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.budget}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">活动地址：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.activitiyAddre}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">活动描述：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.descrption}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">组织者：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.organizeUser}"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">封面图：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.coverPicture}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">约定时间：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.appointDatetime}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">约定结束时间：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.appointEndDatetime}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">商家URL：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.salerUrl}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">最少参与者：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.lowerLimit}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">最多参与者：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.upperLimit}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">支付类型：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.payType}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">截至日期：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.deadline}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">备注：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.jhiComment}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">活动状态 0-新建 1-完成 2-取消：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.status}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">评论数量：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.commentCount}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">浏览数：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.readingCount}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">最后更新时间：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.modifyTime}"/>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">状态：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.joinStatus}"/>
-								</div>
-							</div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否官方：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:if="${fanActivity.official}">是</h3>
+                                    <h3 th:else>否</h3>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否置顶：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:if="${fanActivity.setTop == 1 }">是</h3>
+                                    <h3 th:if="${ fanActivity.setTop == 0 }">否</h3>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">置顶顺序：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.numOrder}"/>
+                                </div>
+                            </div>
 
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<h3 th:text="${fanActivity.stick}"/>
-								</div>
-							</div>
-						</form>
-						<a shiro:hasPermission="a5:fanActivity:edit" th:href="@{'javascript:edit('+${fanActivity.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
-					</div>
-						<!--participant-->
-					<div class="ibox-content tab-pane fade gg" id="attendee">
-						<input shiro:hasPermission="a5:fanActivity:edit" id="userId" type="text" calss="form-control" placeholder="请输入参加人编号"/>&nbsp;&nbsp;
-						<a shiro:hasPermission="a5:fanActivity:edit" th:href="@{'javascript:addParticipant4Fan('+${fanActivity.id}+')'}" class="btn btn-primary left">添加参加人</a>&nbsp;&nbsp;&nbsp;&nbsp;
-						<table id="attendeeTable" data-mobile-responsive="true">
-						</table>
-					</div>
-					<!--comment-->
-					<div class="ibox-content tab-pane fade" id="comment">
-						<table id="commentTable" data-mobile-responsive="true">
-						</table>
-					</div>
-					<div class="ibox-title" style="padding-bottom: 0;">
-						<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;<div>&nbsp;</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	<div th:include="include::footer"></div>
-	<div>
-		<script type="text/javascript">
-            var s_edit_h = 'hidden';
-            var s_remove_h = 'hidden';
-		</script>
-		<div shiro:hasPermission="a5:fitnessActivity:edit">
-			<script type="text/javascript">
-                s_edit_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="a5:fitnessActivity:edit">
-			<script type="text/javascript">
-                var s_remove_h = '';
-			</script>
-		</div>
-	</div>
-	<script type="text/javascript" src="/js/appjs/a5/fanActivity/edit.js">
-	</script>
-	<script type="text/javascript" src="/js/appjs/a5/fanActivity/fanActivity.js">
-	</script>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">活动类型：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.activitiyType}"/>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">	-->
+                            <!--<label class="col-sm-3 control-label">活动名称：</label>-->
+                            <!--<div class="col-sm-8">-->
+                            <!--<input id="activitiyTile" name="activitiyTile" th:value="${fanActivity.activitiyTile}" class="form-control" type="text">-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">人均预算：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.budget}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">活动地址：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.activitiyAddre}"/>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-3 control-label">组织者：</label>-->
+                                <!--<div class="col-sm-8">-->
+                                    <!--<h3 th:utext="${fanActivity.organizeUser}"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">封面图：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.coverPicture}"/>
+                                </div>
+                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-3 control-label">约定时间：</label>-->
+                                <!--<div class="col-sm-8">-->
+                                    <!--<h3 th:text="${fanActivity.appointDatetime}"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="col-sm-3 control-label">约定结束时间：</label>-->
+                                <!--<div class="col-sm-8">-->
+                                    <!--<h3 th:text="${fanActivity.appointEndDatetime}"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">商家URL：</label>
+                                <div class="col-sm-8">
+                                    <a th:href="${fanActivity.salerUrl}"><h3 th:text="${fanActivity.salerUrl}"/></a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">最少参与者：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.lowerLimit}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">最多参与者：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.upperLimit}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">支付类型：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.payType}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">截至日期：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.deadline}==null?null:${#dates.format(fanActivity.deadline,'yyyy-MM-dd HH:mm:ss')}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">备注：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:utext="${fanActivity.jhiComment}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">活动状态 0-新建 1-完成 2-取消：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.status}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">评论数量：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.commentCount}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">浏览数：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.readingCount}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">最后更新时间：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.modifyTime}==null?null:${#dates.format(fanActivity.modifyTime,'yyyy-MM-dd HH:mm:ss')}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">状态：</label>
+                                <div class="col-sm-8">
+                                    <h3 th:text="${fanActivity.joinStatus}"/>
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <a shiro:hasPermission="a5:fanActivity:edit"
+                           th:href="@{'javascript:edit('+${fanActivity.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <!--participant-->
+                    <div class="ibox-content tab-pane fade gg" id="attendee">
+                        <input shiro:hasPermission="a5:fanActivity:edit" id="userId" type="text" calss="form-control"
+                               placeholder="请输入参加人编号"/>&nbsp;&nbsp;
+                        <a shiro:hasPermission="a5:fanActivity:edit"
+                           th:href="@{'javascript:addParticipant4Fan('+${fanActivity.id}+')'}"
+                           class="btn btn-primary left">添加参加人</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <table id="attendeeTable" data-mobile-responsive="true">
+                        </table>
+                    </div>
+                    <!--comment-->
+                    <div class="ibox-content tab-pane fade" id="comment">
+                        <table id="commentTable" data-mobile-responsive="true">
+                        </table>
+                    </div>
+                    <div class="ibox-title" style="padding-bottom: 0;">
+                        <button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;<div>
+                        &nbsp;
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<div>
+    <script type="text/javascript">
+        var s_edit_h = 'hidden';
+        var s_remove_h = 'hidden';
+    </script>
+    <div shiro:hasPermission="a5:fitnessActivity:edit">
+        <script type="text/javascript">
+            s_edit_h = '';
+        </script>
+    </div>
+    <div shiro:hasPermission="a5:fitnessActivity:edit">
+        <script type="text/javascript">
+            var s_remove_h = '';
+        </script>
+    </div>
+</div>
+<script type="text/javascript" src="/js/appjs/a5/fanActivity/edit.js">
+</script>
+<script type="text/javascript" src="/js/appjs/a5/fanActivity/fanActivity.js">
+</script>
 </body>
 </html>

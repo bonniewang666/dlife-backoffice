@@ -8,7 +8,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/aitprestpro?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/aitprestprod?useUnicode=true&characterEncoding=utf8
     username: root
     password: root
     initialSize: 1
@@ -33,6 +33,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     #useGlobalDataSourceStat: true
+
   redis:
     host: localhost
     port: 6379

@@ -74,6 +74,28 @@ public class FanActivityDO implements Serializable {
 	//
 	private String stickOrder;
 
+	//是否置顶
+	private Integer setTop;
+	//置顶顺序
+	private Integer numOrder;
+
+
+	public Integer getSetTop() {
+		return setTop;
+	}
+
+	public void setSetTop(Integer setTop) {
+		this.setTop = setTop;
+	}
+
+	public Integer getNumOrder() {
+		return numOrder;
+	}
+
+	public void setNumOrder(Integer numOrder) {
+		this.numOrder = numOrder;
+	}
+
 	/**
 	 * 设置：
 	 */

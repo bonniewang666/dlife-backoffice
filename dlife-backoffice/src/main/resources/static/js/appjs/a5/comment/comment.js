@@ -35,6 +35,8 @@ function load() {
                         content: $('#searchTitle').val(),
                         wechatUserId: $('#searchAuthorId').val(),
                         parentId: $('#searchParentId').val(),
+                        channel: $('#searchObjectType').val(),
+                        objectId: $('#searchObjectId').val(),
                         id: $('#searchId').val()
                     };
                 },
@@ -56,6 +58,20 @@ function load() {
                                 return '<a href="/a5/comment/detail/' + row.id + '">' + value + '</a>';
                             else
                                 return value;
+                        }
+                    },
+                    {
+                        field: 'avatar',
+                        title: '头像',
+                        formatter: function (value, row, index) {
+                            return '<img src="' + value + '"/>';
+                        }
+                    },
+                    {
+                        field: 'nickName',
+                        title: '昵称',
+                        formatter: function (value, row, index) {
+                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
@@ -110,13 +126,9 @@ function load() {
                     //         return '<img src="' + value + '"/>';
                     //     }
                     // },
-                    {
-                        field: 'nickName',
-                        title: '昵称',
-                        formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
-                        }
-                    },
+
+
+
 
                     // {
                     //     field: 'rating1',
