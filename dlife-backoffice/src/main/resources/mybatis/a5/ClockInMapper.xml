@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.ClockInDao">
+    <select id="get" resultType="com.bootdo.a5.domain.ClockInDO">
+		select `id`,`title`,`sign_note`,`punch_date_time`,`activity_id`,`activity_participation_id`,`reply_count`,`thumbs_up_count` from clock_in where id = #{value}
+	</select>
+
+    <select id="list" resultMap="clockInBean">
+        SELECT
+        `c`.`id`,
+        `c`.`title`,
+        `c`.`sign_note`,
+        `c`.`punch_date_time`,
+        `c`.`activity_id`,
+        `c`.`activity_participation_id`,
+        `c`.`reply_count`,
+        `c`.`thumbs_up_count`,
+        `w`.`id` AS `wechat_user_id`,
+        `w`.`open_id`,
+        `w`.`wechat_code`,
+        `w`.`user_name`,
+        `w`.`nick_name`,
+        `w`.`avatar`,
+        `a`.`wechat_user_id` AS `wechat_user_id_0`,
+        `a`.`id` AS `id_0`
+        FROM
+        `clock_in` AS `c`
+        LEFT JOIN `activity_participation` AS `a`
+        ON `c`.`activity_participation_id` = `a`.`id`
+        LEFT JOIN `wechat_user` AS `w`
+        ON `a`.`wechat_user_id` = `w`.`id`
+
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="title != null and title != ''">and title = #{title}</if>
+            <if test="signNote != null and signNote != ''">and sign_note = #{signNote}</if>
+            <if test="punchDateTime != null and punchDateTime != ''">and punch_date_time = #{punchDateTime}</if>
+            <if test="activityId != null and activityId != ''">and activity_id = #{activityId}</if>
+            <if test="activityParticipationId != null and activityParticipationId != ''">and activity_participation_id =
+                #{activityParticipationId}
+            </if>
+            <if test="replyCount != null and replyCount != ''">and reply_count = #{replyCount}</if>
+            <if test="thumbsUpCount != null and thumbsUpCount != ''">and thumbs_up_count = #{thumbsUpCount}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <resultMap type="com.bootdo.a5.domain.ClockInDO" id="clockInBean" autoMapping="true">
+        <result property="id" column="id"/>
+        <association property="wechatUserDO" javaType="com.bootdo.a5.domain.WechatUserDO" autoMapping="true">
+            <result property="id" column="wechat_user_id"/>
+        </association>
+    </resultMap>
+
+
+    <select id="count" resultType="int">
+        select count(*) from clock_in
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="title != null and title != ''">and title = #{title}</if>
+            <if test="signNote != null and signNote != ''">and sign_note = #{signNote}</if>
+            <if test="punchDateTime != null and punchDateTime != ''">and punch_date_time = #{punchDateTime}</if>
+            <if test="activityId != null and activityId != ''">and activity_id = #{activityId}</if>
+            <if test="activityParticipationId != null and activityParticipationId != ''">and activity_participation_id =
+                #{activityParticipationId}
+            </if>
+            <if test="replyCount != null and replyCount != ''">and reply_count = #{replyCount}</if>
+            <if test="thumbsUpCount != null and thumbsUpCount != ''">and thumbs_up_count = #{thumbsUpCount}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.a5.domain.ClockInDO" useGeneratedKeys="true" keyProperty="id">
+		insert into clock_in
+		(
+			`title`, 
+			`sign_note`, 
+			`punch_date_time`, 
+			`activity_id`, 
+			`activity_participation_id`, 
+			`reply_count`, 
+			`thumbs_up_count`
+		)
+		values
+		(
+			#{title}, 
+			#{signNote}, 
+			#{punchDateTime}, 
+			#{activityId}, 
+			#{activityParticipationId}, 
+			#{replyCount}, 
+			#{thumbsUpCount}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bootdo.a5.domain.ClockInDO">
+        update clock_in
+        <set>
+            <if test="title != null">`title` = #{title},</if>
+            <if test="signNote != null">`sign_note` = #{signNote},</if>
+            <if test="punchDateTime != null">`punch_date_time` = #{punchDateTime},</if>
+            <if test="activityId != null">`activity_id` = #{activityId},</if>
+            <if test="activityParticipationId != null">`activity_participation_id` = #{activityParticipationId},</if>
+            <if test="replyCount != null">`reply_count` = #{replyCount},</if>
+            <if test="thumbsUpCount != null">`thumbs_up_count` = #{thumbsUpCount}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from clock_in where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from clock_in where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
