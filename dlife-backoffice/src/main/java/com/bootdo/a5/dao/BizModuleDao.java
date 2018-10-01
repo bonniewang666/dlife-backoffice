@@ -1,6 +1,6 @@
 package com.bootdo.a5.dao;
 
-import com.bootdo.a5.domain.TagsDO;
+import com.bootdo.a5.domain.BizModuleDO;
 
 import java.util.List;
 import java.util.Map;
@@ -8,23 +8,23 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 标签表
+ * 业务板块表
  * @author aitp
  * @email aitp@accenture.com
- * @date 2018-10-01 14:22:13
+ * @date 2018-10-01 15:24:35
  */
 @Mapper
-public interface TagsDao {
+public interface BizModuleDao {
 
-	TagsDO get(Long id);
+	BizModuleDO get(Long id);
 	
-	List<TagsDO> list(Map<String, Object> map);
+	List<BizModuleDO> list(Map<String, Object> map);
 	
 	int count(Map<String, Object> map);
 	
-	int save(TagsDO tags);
+	int save(BizModuleDO bizModule);
 	
-	int update(TagsDO tags);
+	int update(BizModuleDO bizModule);
 	
 	int remove(Long id);
 	

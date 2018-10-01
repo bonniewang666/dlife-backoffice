@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.BizModuleDao">
+
+    <select id="get" resultType="com.bootdo.a5.domain.BizModuleDO">
+		select
+		`id`,`biz_category`,`object_type`,`object_id`,`create_user_id`,`create_date`,`update_user_id`,`update_date`,`company` from biz_module where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.bootdo.a5.domain.BizModuleDO">
+        select
+        `id`,`biz_category`,`object_type`,`object_id`,`create_user_id`,`create_date`,`update_user_id`,`update_date`,
+        `company` from biz_module
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="bizCategory != null and bizCategory != ''">and biz_category = #{bizCategory}</if>
+            <if test="objectType != null and objectType != ''">and object_type = #{objectType}</if>
+            <if test="objectId != null and objectId != ''">and object_id = #{objectId}</if>
+            <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
+            <if test="createDate != null and createDate != ''">and create_date = #{createDate}</if>
+            <if test="updateUserId != null and updateUserId != ''">and update_user_id = #{updateUserId}</if>
+            <if test="updateDate != null and updateDate != ''">and update_date = #{updateDate}</if>
+            <if test="company != null and company != ''">and company = #{company}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from biz_module
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="bizCategory != null and bizCategory != ''">and biz_category = #{bizCategory}</if>
+            <if test="objectType != null and objectType != ''">and object_type = #{objectType}</if>
+            <if test="objectId != null and objectId != ''">and object_id = #{objectId}</if>
+            <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
+            <if test="createDate != null and createDate != ''">and create_date = #{createDate}</if>
+            <if test="updateUserId != null and updateUserId != ''">and update_user_id = #{updateUserId}</if>
+            <if test="updateDate != null and updateDate != ''">and update_date = #{updateDate}</if>
+            <if test="company != null and company != ''">and company = #{company}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.a5.domain.BizModuleDO" useGeneratedKeys="true" keyProperty="id">
+		insert into biz_module
+		(
+			`biz_category`,
+			`object_type`, 
+			`object_id`, 
+			`create_user_id`, 
+			`create_date`, 
+			`update_user_id`, 
+			`update_date`,
+			`company`
+		)
+		values
+		(
+			#{bizCategory},
+			#{objectType}, 
+			#{objectId}, 
+			#{createUserId}, 
+			#{createDate}, 
+			#{updateUserId}, 
+			#{updateDate},
+			#{company}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bootdo.a5.domain.BizModuleDO">
+        update biz_module
+        <set>
+            <if test="bizCategory != null">`biz_category` = #{bizCategory},</if>
+            <if test="objectType != null">`object_type` = #{objectType},</if>
+            <if test="objectId != null">`object_id` = #{objectId},</if>
+            <if test="createUserId != null">`create_user_id` = #{createUserId},</if>
+            <if test="createDate != null">`create_date` = #{createDate},</if>
+            <if test="updateUserId != null">`update_user_id` = #{updateUserId},</if>
+            <if test="updateDate != null">`update_date` = #{updateDate},</if>
+            <if test="company != null">`company` = #{company}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from biz_module where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from biz_module where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="listActivitiesByBizCategory" resultType="com.bootdo.a5.domain.BizActivity">
+        select
+        biz_activity.id ,
+        company ,
+        biz_category ,
+        object_type ,
+        object_id ,
+        object_title ,
+        create_user_id ,
+        last_update_time ,
+        w.nick_name ,
+        w.avatar
+        from
+        (
+        SELECT
+        a.`id` ,
+        a.`company` ,
+        a.`biz_category` as biz_category ,
+        a.`object_type` ,
+        a.`object_id` ,
+        b.title as object_title ,
+        b.modify_time as last_update_time ,
+        b.wechat_user_id as create_user_id
+        FROM
+        `biz_module` as a
+        left JOIN `fitness_activity` as b ON a.`object_id` = b.`id`
+        where
+        a.object_type = 'FIT'
+        union
+        SELECT
+        a.`id` ,
+        a.`company` ,
+        a.`biz_category` ,
+        a.`object_type` ,
+        a.`object_id` ,
+        c.activitiy_tile as object_title ,
+        c.modify_time ,
+        c.wechat_user_id
+        FROM
+        `biz_module` as a
+        left JOIN `pin_fan_activity` as c ON a.`object_id` = c.`id`
+        where
+        a.object_type = 'PIN'
+        union
+        SELECT
+        a.`id` ,
+        a.`company` ,
+        a.`biz_category` ,
+        a.`object_type` ,
+        a.`object_id` ,
+        d.title as object_title ,
+        d.modify_time ,
+        d.wechat_user_id
+        FROM
+        `biz_module` as a
+        left JOIN `question` as d ON a.object_id = d.`id`
+        where
+        a.object_type = 'FAQS'
+        ) as biz_activity
+        left join wechat_user w ON biz_activity.create_user_id = w.id
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="company != null and company != ''">and company = #{company}</if>
+            <if test="bizCategory != null and bizCategory != ''">and biz_category = #{bizCategory}</if>
+            <if test="objectType != null and objectType != ''">and object_type = #{objectType}</if>
+            <if test="objectId != null and objectId != ''">and object_id = #{objectId}</if>
+            <if test="objectTitle != null and objectTitle != ''">and object_title = #{objectTitle}</if>
+            <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
+            <if test="lastUpdateTime != null and lastUpdateTime != ''">and last_update_time = #{lastUpdateTime}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by biz_activity.last_update_time desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+</mapper>

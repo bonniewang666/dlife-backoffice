@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  * @author aitp
  * @email aitp@accenture.com
- * @date 2018-10-01 10:22:45
+ * @date 2018-10-01 14:22:13
  */
 public class TagsDO implements Serializable {
 	private static final long serialVersionUID = 1L;
