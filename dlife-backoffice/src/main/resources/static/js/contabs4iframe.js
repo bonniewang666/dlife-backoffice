@@ -49,7 +49,7 @@ function menuItem() {
 //            });
         // 添加选项卡
         parent.$('.J_menuTabs .page-tabs-content').append(str);
-        scrollToTab($('.J_menuTab.active'));
+        scrollToTab(parent.$('.J_menuTab.active'));
     }
     return false;
 }

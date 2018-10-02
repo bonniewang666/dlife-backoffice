@@ -356,7 +356,7 @@ function loadAttendee() {
                         field: 'avatar',
                         title: '头像',
                         formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<img src="' + value + '"/>';
                         }
                     },
                     {

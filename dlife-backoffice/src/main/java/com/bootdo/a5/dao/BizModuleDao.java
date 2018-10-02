@@ -32,4 +32,8 @@ public interface BizModuleDao {
 	int batchRemove(Long[] ids);
 
 	List<BizActivity> listActivities(Map<String, Object> map);
+
+	int batchRemoveFit(Long[] ids);
+	int batchRemovePin(Long[] ids);
+	int batchRemoveFaqs(Long[] ids);
 }

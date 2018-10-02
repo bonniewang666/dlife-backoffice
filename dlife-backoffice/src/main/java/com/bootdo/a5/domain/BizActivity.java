@@ -22,10 +22,51 @@ public class BizActivity implements Serializable {
     private String objectType;
     private Long objectId;
     private String objectTitle;
+
+    //创建人ID
     private Long createUserId;
-    private Date lastUpdateTime;
+    //创建时间
+    private Date createDate;
+    //修改人ID
+    private Long updateUserId;
+    //修改日期
+    private Date updateDate;
+
     private String nickName;
     private String avatar;
+    private String wechatUserId;
+
+    public String getWechatUserId() {
+        return wechatUserId;
+    }
+
+    public void setWechatUserId(String wechatUserId) {
+        this.wechatUserId = wechatUserId;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Long getUpdateUserId() {
+        return updateUserId;
+    }
+
+    public void setUpdateUserId(Long updateUserId) {
+        this.updateUserId = updateUserId;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 
     public String getNickName() {
         return Base64Utils.decode( nickName );
@@ -99,11 +140,4 @@ public class BizActivity implements Serializable {
         this.createUserId = createUserId;
     }
 
-    public Date getLastUpdateTime() {
-        return lastUpdateTime;
-    }
-
-    public void setLastUpdateTime(Date lastUpdateTime) {
-        this.lastUpdateTime = lastUpdateTime;
-    }
 }

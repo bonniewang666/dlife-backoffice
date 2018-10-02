@@ -71,7 +71,7 @@ function load() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.createUserId+'" href="/a5/wechatUser/detail/' + row.createUserId + '">' + value + '</a>';
                         }
                     },
                     {
@@ -88,19 +88,20 @@ function load() {
                         field: 'objectId',
                         title: '关联对象编号',
                         formatter: function (value, row, index) {
+
                             if (value != '' && value != null) {
                                 if (row.channel == 'FIT')
                                 // 小目标
-                                    return '<a href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
                                 else if (row.channel == 'POINT_PRODUCT')
                                 // 积分商城
-                                    return '<a href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
                                 else if (row.channel == 'FAQS')
                                 // 小问答
-                                    return '<a href="/a5/question/detail/' + row.objectId + '">' + value + '</a>';
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/question/detail/' + row.objectId + '">' + value + '</a>';
                                 else if (row.channel == 'PIN')
                                 // 小邀约
-                                    return '<a href="/a5/fanActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/fanActivity/detail/' + row.objectId + '">' + value + '</a>';
                             } else
                                 return value;
 

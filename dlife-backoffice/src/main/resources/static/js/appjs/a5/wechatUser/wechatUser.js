@@ -54,10 +54,10 @@ function load() {
                         field: 'id',
                         title: 'ID'
                     },
-                    {
-                        field: 'openId',
-                        title: 'Wechat OpenID'
-                    },
+                    // {
+                    //     field: 'openId',
+                    //     title: 'Wechat OpenID'
+                    // },
                     // 								{
                     // 	field : 'wechatCode',
                     // 	title : ''
@@ -126,10 +126,10 @@ function load() {
                         field: 'createTime',
                         title: '创建时间'
                     },
-                    {
-                        field: 'modifyTime',
-                        title: ''
-                    },
+                    // {
+                    //     field: 'modifyTime',
+                    //     title: ''
+                    // },
                     // 								{
                     // 	field : 'totalPoint',
                     // 	title : ''

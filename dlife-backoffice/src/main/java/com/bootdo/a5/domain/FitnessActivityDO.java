@@ -49,6 +49,17 @@ public class FitnessActivityDO implements Serializable {
 	//
 	private Integer readingCount;
 
+	//所属业务板块
+	private BizModuleDO bizModuleDO =new BizModuleDO();
+
+	public BizModuleDO getBizModuleDO() {
+		return bizModuleDO;
+	}
+
+	public void setBizModuleDO(BizModuleDO bizModuleDO) {
+		this.bizModuleDO = bizModuleDO;
+	}
+
 	/**
 	 * 设置：
 	 */

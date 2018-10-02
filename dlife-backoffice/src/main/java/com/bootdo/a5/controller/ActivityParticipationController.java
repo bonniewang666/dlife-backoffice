@@ -57,11 +57,11 @@ public class ActivityParticipationController {
 	@GetMapping("/add")
 	@RequiresPermissions("a5:fitnessActivity:add")
 	String add(){
-	    return "a5/activityParticipation/add";
+	    return "a5/fitnessActivity/add";
 	}
 
 	@GetMapping("/edit/{id}")
-	@RequiresPermissions("a5:activityParticipation:edit")
+	@RequiresPermissions("a5:fitnessActivity:edit")
 	String edit(@PathVariable("id") Long id,Model model){
 		ActivityParticipationDO activityParticipation = activityParticipationService.get(id);
 		model.addAttribute("activityParticipation", activityParticipation);

@@ -5,7 +5,10 @@
 
     <select id="get" resultType="com.bootdo.a5.domain.BizModuleDO">
 		select
-		`id`,`biz_category`,`object_type`,`object_id`,`create_user_id`,`create_date`,`update_user_id`,`update_date`,`company` from biz_module where id = #{value}
+		`id`,`biz_category`,`object_type`,`object_id`,`create_user_id`,`create_date`,`update_user_id`,`update_date`,`company` from biz_module
+
+
+		where id = #{value}
 	</select>
 
     <select id="list" resultType="com.bootdo.a5.domain.BizModuleDO">
@@ -102,6 +105,26 @@
         </foreach>
     </delete>
 
+
+    <delete id="batchRemoveFit">
+        delete from biz_module where object_type='FIT' and object_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="batchRemovePin">
+        delete from biz_module where object_type='PIN' and object_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="batchRemoveFaqs">
+        delete from biz_module where object_type='FAQS' and object_id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
     <select id="listActivities" resultType="com.bootdo.a5.domain.BizActivity">
         select
         biz_activity.id ,
@@ -111,7 +134,10 @@
         object_id ,
         object_title ,
         create_user_id ,
-        last_update_time ,
+        update_user_id,
+        update_date,
+        create_date,
+        wechat_user_id,
         w.nick_name ,
         w.avatar
         from
@@ -122,9 +148,12 @@
         a.`biz_category` as biz_category ,
         a.`object_type` ,
         a.`object_id` ,
+        a.update_user_id,
+        a.update_date,
+        a.create_user_id,
+        a.create_date,
         b.title as object_title ,
-        b.modify_time as last_update_time ,
-        b.wechat_user_id as create_user_id
+        b.wechat_user_id
         FROM
         `biz_module` as a
         left JOIN `fitness_activity` as b ON a.`object_id` = b.`id`
@@ -137,8 +166,11 @@
         a.`biz_category` ,
         a.`object_type` ,
         a.`object_id` ,
+        a.update_user_id,
+        a.update_date,
+        a.create_user_id,
+        a.create_date,
         c.activitiy_tile as object_title ,
-        c.modify_time ,
         c.wechat_user_id
         FROM
         `biz_module` as a
@@ -152,8 +184,11 @@
         a.`biz_category` ,
         a.`object_type` ,
         a.`object_id` ,
+        a.update_user_id,
+        a.update_date,
+        a.create_user_id,
+        a.create_date,
         d.title as object_title ,
-        d.modify_time ,
         d.wechat_user_id
         FROM
         `biz_module` as a
@@ -161,7 +196,7 @@
         where
         a.object_type = 'FAQS'
         ) as biz_activity
-        left join wechat_user w ON biz_activity.create_user_id = w.id
+        left join wechat_user w ON biz_activity.wechat_user_id = w.id
         <where>
             <if test="id != null and id != ''">and id = #{id}</if>
             <if test="company != null and company != ''">and company = #{company}</if>
@@ -170,14 +205,17 @@
             <if test="objectId != null and objectId != ''">and object_id = #{objectId}</if>
             <if test="objectTitle != null and objectTitle != ''">and object_title = #{objectTitle}</if>
             <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
-            <if test="lastUpdateTime != null and lastUpdateTime != ''">and last_update_time = #{lastUpdateTime}</if>
+            <if test="update_user_id != null and update_user_id != ''">and update_user_id = #{updateUserId}</if>
+            <if test="update_date != null and update_date != ''">and update_date = #{updateDate}</if>
+            <if test="create_date != null and create_date != ''">and create_date = #{createDate}</if>
+            <if test="wechat_user_id != null and wechat_user_id != ''">and wechat_user_id = #{wechatUserId}</if>
         </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
             <otherwise>
-                order by biz_activity.last_update_time desc
+                order by biz_activity.update_date desc, biz_activity.id desc
             </otherwise>
         </choose>
         <if test="offset != null and limit != null">

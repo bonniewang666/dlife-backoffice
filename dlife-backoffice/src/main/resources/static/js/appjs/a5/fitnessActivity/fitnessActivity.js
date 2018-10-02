@@ -1,6 +1,19 @@
 var prefix = "/a5/fitnessActivity"
-$(function () {
+$().ready(function() {
     load();
+    $("#companySelect").chosen().change(function () {
+        var companyCode = $("#companySelect").val();
+        loadModules(companyCode);
+        reLoad();
+    });
+
+    $("#bizCategory").chosen({
+        maxHeight : 200
+    });
+
+    $("#targetCompany").chosen({
+        maxHeight : 200
+    });
 });
 
 function load() {
@@ -9,9 +22,9 @@ function load() {
             {
                 method: 'get', // 服务器数据的请求方式 get or post
                 url: prefix + "/list", // 服务器数据的加载地址
-                showRefresh : true,
-                showToggle : true,
-                showColumns : true,
+                // showRefresh : true,
+                // showToggle : true,
+                // showColumns : true,
                 iconSize: 'outline',
                 toolbar: '#exampleToolbar',
                 striped: true, // 设置为true会有隔行变色效果
@@ -25,7 +38,7 @@ function load() {
                 pageSize: 10, // 如果设置了分页，每页数据条数
                 pageNumber: 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
-                showColumns: true, // 是否显示内容下拉框（选择显示的列）
+                showColumns: false, // 是否显示内容下拉框（选择显示的列）
                 sidePagination: "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                 queryParams: function (params) {
                     return {
@@ -34,7 +47,9 @@ function load() {
                         offset: params.offset,
                         title: $('#searchTitle').val(),
                         wechatUserId: $('#searchAuthorId').val(),
-                        id:$('#searchId').val()
+                        id:$('#searchId').val(),
+                        bizCategory:$('#bizCategory').val(),
+                        company:$('#companySelect').val()
                         // username:$('#searchName').val()
                     };
                 },
@@ -54,6 +69,14 @@ function load() {
                     {
                         field: 'id',
                         title: ''
+                    },
+                    {
+                        field: 'bizModuleDO.company',
+                        title: '公司'
+                    },
+                    {
+                        field: 'bizModuleDO.bizCategory',
+                        title: '板块'
                     },
                     {
                         field: 'title',
@@ -93,22 +116,6 @@ function load() {
                         title: '结束时间'
                     },
                     {
-                        field: 'commentCount',
-                        title: '评论数量'
-                    },
-                    {
-                        field: 'wechatUserId',
-                        title: '微信编号'
-                    },
-
-                    {
-                        field: 'nickName',
-                        title: '昵称',
-                        formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
-                        }
-                    },
-                    {
                         field: 'modifyTime',
                         title: '修改时间'
                     },
@@ -117,11 +124,28 @@ function load() {
                         title: '浏览次数'
                     },
                     {
+                        field: 'commentCount',
+                        title: '评论数量'
+                    },
+                    // {
+                    //     field: 'wechatUserId',
+                    //     title: '微信编号'
+                    // },
+
+                    {
+                        field: 'nickName',
+                        title: '昵称',
+                        formatter: function (value, row, index) {
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                        }
+                    },
+
+                    {
                         title: '操作',
                         field: 'id',
                         align: 'center',
                         formatter: function (value, row, index) {
-                            var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
+                            var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="editFit(\''
                                 + row.id
                                 + '\')"><i class="fa fa-edit"></i></a> ';
                             var d = '<a class="btn btn-warning btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
@@ -147,18 +171,18 @@ function add() {
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: prefix + '/add' // iframe的url
+        content: '/a5/fitnessActivity/add' // iframe的url
     });
 }
 
-function edit(id) {
+function editFit(id) {
     layer.open({
         type: 2,
         title: '编辑',
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: prefix + '/edit/' + id // iframe的url
+        content: '/a5/fitnessActivity/edit/' + id // iframe的url
     });
 }
 
@@ -167,7 +191,7 @@ function remove(id) {
         btn: ['确定', '取消']
     }, function () {
         $.ajax({
-            url: prefix + "/remove",
+            url: "/a5/fitnessActivity/remove",
             type: "post",
             data: {
                 'id': id
@@ -207,7 +231,7 @@ function batchRemove() {
             data: {
                 "ids": ids
             },
-            url: prefix + '/batchRemove',
+            url: '/a5/fitnessActivity/batchRemove',
             success: function (r) {
                 if (r.code == 0) {
                     layer.msg(r.msg);
@@ -288,8 +312,7 @@ function loadParticipant() {
                         field: 'avatar',
                         title: '头像',
                         formatter: function (value, row, index) {
-                            // return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + '<img src="' + value + '" /></a>';
-                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '<img src="' + value + '" /></a>';
+                            return '<img src="' + value + '"/>';
                         }
                     },
                     {
@@ -604,4 +627,42 @@ function loadClockIn(){
                         }
                     } ]
             });
+}
+
+
+function batchMove(){
+    var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    if (rows.length == 0) {
+        layer.msg("请选择要修改的数据");
+        return;
+    }
+    layer.confirm("确认要修改选中的'" + rows.length + "'条数据吗?", {
+        btn: ['确定', '取消']
+        // 按钮
+    }, function () {
+        var ids = new Array();
+        // 遍历所有选择的行数据，取每条数据对应的ID
+        $.each(rows, function (i, row) {
+            ids[i] = row['id'];
+        });
+        $.ajax({
+            type: 'POST',
+            data: {
+                "targetCompany": $("#targetCompany").val(),
+                "targetBizCategory": $("#targetBizCategory").val(),
+                "ids": ids
+            },
+            url: prefix + '/batchMove',
+            success: function (r) {
+                if (r.code == 0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    }, function () {
+
+    });
 }

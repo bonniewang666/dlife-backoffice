@@ -27,4 +27,9 @@ public interface FitnessActivityService {
 	int remove(Long id);
 	
 	int batchRemove(Long[] ids);
+
+	/**
+	 * 批量修改
+	 * */
+	int batchMove(String targetCompany , String targetBizCategory,  Long[] ids);
 }

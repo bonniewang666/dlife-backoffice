@@ -13,51 +13,7 @@ $(function () {
         maxHeight : 200
     });
 
-
-
-
 });
-
-
-function loadModules(companyCode) {
-    var html = "<option value=\"\">--选择业务板块--</option>";
-    $.ajax({
-        url : '/a5/bizModule/modules/' + companyCode,
-        success : function(data) {
-            //加载数据
-            for (var i = 0; i < data.length; i++) {
-                // alert(data[i].value);
-                html += '<option value="' + data[i].value + '">' + data[i].name + '</option>'
-            }
-
-            $("#bizCategory").empty();
-            /* 添加新select选项（省略） */
-            $("#bizCategory").append(html);
-            $("#bizCategory").trigger("chosen:updated");
-
-            $("#bizCategory").chosen({
-                maxHeight : 200
-            });
-
-            $("#bizCategory").chosen().change(function () {
-                reLoad();
-            });
-
-            $('#bizCategory').on('change', function(e, params) {
-                console.log(params.selected);
-                var opt = {
-                    query : {
-                        company : $('#companySelect').val(),
-                        bizCategory : params.selected
-                    }
-                }
-                $('#exampleTable').bootstrapTable('refresh', opt);
-            });
-
-
-        }
-    });
-}
 
 function load() {
     $('#exampleTable')
@@ -368,13 +324,13 @@ function loadActivities() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.createUserId+'" href="/a5/wechatUser/detail/' + row.createUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'" href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
-                    // {
-                    //     field: 'createUserId',
-                    //     title: '创建人ID'
-                    // },
+                    {
+                        field: 'createUserId',
+                        title: '创建人ID'
+                    },
                     {
                         field: 'createDate',
                         title: '创建时间'
@@ -410,3 +366,5 @@ function loadActivities() {
 
 
 }
+
+

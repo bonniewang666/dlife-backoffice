@@ -3,64 +3,185 @@
 
 <mapper namespace="com.bootdo.a5.dao.FitnessActivityDao">
 
-	<select id="get" resultType="com.bootdo.a5.domain.FitnessActivityDO">
-		select `id`,`title`,`descrption`,`wechat_user_id`,`nick_name`,`avatar`,`project`,`company_role`,`sign_start_time`,`sign_end_time`,`activity_start_time`,`activity_end_time`,`comment_count`,`modify_time`,`reading_count` from fitness_activity where id = #{value}
+    <select id="get" resultMap="fitActivityBean">
+		SELECT
+            a.`id` ,
+            a.`title` ,
+            a.`descrption` ,
+            a.`wechat_user_id` ,
+            a.`nick_name` ,
+            a.`avatar` ,
+            a.`project` ,
+            a.`company_role` ,
+            a.`sign_start_time` ,
+            a.`sign_end_time` ,
+            a.`activity_start_time` ,
+            a.`activity_end_time` ,
+            a.`comment_count` ,
+            a.`modify_time` ,
+            a.`reading_count` ,
+            b.`biz_id` ,
+            b.`biz_category` ,
+            b.`object_type` ,
+            b.`object_id` ,
+            b.`create_user_id` ,
+            b.`create_date` ,
+            b.`update_user_id` ,
+            b.`update_date` ,
+            b.`company`
+        FROM
+            `fitness_activity` as a
+        left JOIN(
+            select
+                b.`id` as biz_id ,
+                b.`biz_category` ,
+                b.`object_type` ,
+                b.`object_id` ,
+                b.`create_user_id` ,
+                b.`create_date` ,
+                b.`update_user_id` ,
+                b.`update_date` ,
+                b.`company`
+            from
+                `biz_module` as b
+            WHERE
+                b.object_type = 'FIT'
+        ) as b ON a.`id` = b.`object_id`
+		where a.id = #{value}
 	</select>
 
-	<select id="list" resultType="com.bootdo.a5.domain.FitnessActivityDO">
-		select `id`,`title`,`descrption`,`wechat_user_id`,`nick_name`,`avatar`,`project`,`company_role`,`sign_start_time`,`sign_end_time`,`activity_start_time`,`activity_end_time`,`comment_count`,`modify_time`,`reading_count` from fitness_activity
-        <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="title != null and title != ''"> and title like #{title} </if>
-		  		  <if test="descrption != null and descrption != ''"> and descrption = #{descrption} </if>
-		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
-		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
-		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
-		  		  <if test="project != null and project != ''"> and project = #{project} </if>
-		  		  <if test="companyRole != null and companyRole != ''"> and company_role = #{companyRole} </if>
-		  		  <if test="signStartTime != null and signStartTime != ''"> and sign_start_time = #{signStartTime} </if>
-		  		  <if test="signEndTime != null and signEndTime != ''"> and sign_end_time = #{signEndTime} </if>
-		  		  <if test="activityStartTime != null and activityStartTime != ''"> and activity_start_time = #{activityStartTime} </if>
-		  		  <if test="activityEndTime != null and activityEndTime != ''"> and activity_end_time = #{activityEndTime} </if>
-		  		  <if test="commentCount != null and commentCount != ''"> and comment_count = #{commentCount} </if>
-		  		  <if test="modifyTime != null and modifyTime != ''"> and modify_time = #{modifyTime} </if>
-		  		  <if test="readingCount != null and readingCount != ''"> and reading_count = #{readingCount} </if>
-		  		</where>
+    <select id="list" resultMap="fitActivityBean">
+        SELECT
+            a.`id` ,
+            a.`title` ,
+            a.`descrption` ,
+            a.`wechat_user_id` ,
+            a.`nick_name` ,
+            a.`avatar` ,
+            a.`project` ,
+            a.`company_role` ,
+            a.`sign_start_time` ,
+            a.`sign_end_time` ,
+            a.`activity_start_time` ,
+            a.`activity_end_time` ,
+            a.`comment_count` ,
+            a.`modify_time` ,
+            a.`reading_count` ,
+            b.`biz_id` ,
+            b.`biz_category` ,
+            b.`object_type` ,
+            b.`object_id` ,
+            b.`create_user_id` ,
+            b.`create_date` ,
+            b.`update_user_id` ,
+            b.`update_date` ,
+            b.`company`
+            FROM
+            `fitness_activity` as a
+            left JOIN(
+            select
+            b.`id` as biz_id ,
+            b.`biz_category` ,
+            b.`object_type` ,
+            b.`object_id` ,
+            b.`create_user_id` ,
+            b.`create_date` ,
+            b.`update_user_id` ,
+            b.`update_date` ,
+            b.`company`
+            from
+            `biz_module` as b
+            WHERE
+            b.object_type = 'FIT'
+        ) as b ON a.`id` = b.`object_id`
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="title != null and title != ''">and title like #{title}</if>
+            <if test="descrption != null and descrption != ''">and descrption = #{descrption}</if>
+            <if test="wechatUserId != null and wechatUserId != ''">and wechat_user_id = #{wechatUserId}</if>
+            <if test="nickName != null and nickName != ''">and nick_name = #{nickName}</if>
+            <if test="avatar != null and avatar != ''">and avatar = #{avatar}</if>
+            <if test="project != null and project != ''">and project = #{project}</if>
+            <if test="companyRole != null and companyRole != ''">and company_role = #{companyRole}</if>
+            <if test="signStartTime != null and signStartTime != ''">and sign_start_time = #{signStartTime}</if>
+            <if test="signEndTime != null and signEndTime != ''">and sign_end_time = #{signEndTime}</if>
+            <if test="activityStartTime != null and activityStartTime != ''">and activity_start_time =
+                #{activityStartTime}
+            </if>
+            <if test="activityEndTime != null and activityEndTime != ''">and activity_end_time = #{activityEndTime}</if>
+            <if test="commentCount != null and commentCount != ''">and comment_count = #{commentCount}</if>
+            <if test="modifyTime != null and modifyTime != ''">and modify_time = #{modifyTime}</if>
+            <if test="readingCount != null and readingCount != ''">and reading_count = #{readingCount}</if>
+            <if test="company != null and company != ''">and company = #{company}</if>
+            <if test="bizCategory != null and bizCategory != ''">and biz_category = #{bizCategory}</if>
+
+        </where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
-			<otherwise>
+            <otherwise>
                 order by id desc
-			</otherwise>
+            </otherwise>
         </choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-	
- 	<select id="count" resultType="int">
-		select count(*) from fitness_activity
-		 <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="title != null and title != ''"> and title = #{title} </if>
-		  		  <if test="descrption != null and descrption != ''"> and descrption = #{descrption} </if>
-		  		  <if test="wechatUserId != null and wechatUserId != ''"> and wechat_user_id = #{wechatUserId} </if>
-		  		  <if test="nickName != null and nickName != ''"> and nick_name = #{nickName} </if>
-		  		  <if test="avatar != null and avatar != ''"> and avatar = #{avatar} </if>
-		  		  <if test="project != null and project != ''"> and project = #{project} </if>
-		  		  <if test="companyRole != null and companyRole != ''"> and company_role = #{companyRole} </if>
-		  		  <if test="signStartTime != null and signStartTime != ''"> and sign_start_time = #{signStartTime} </if>
-		  		  <if test="signEndTime != null and signEndTime != ''"> and sign_end_time = #{signEndTime} </if>
-		  		  <if test="activityStartTime != null and activityStartTime != ''"> and activity_start_time = #{activityStartTime} </if>
-		  		  <if test="activityEndTime != null and activityEndTime != ''"> and activity_end_time = #{activityEndTime} </if>
-		  		  <if test="commentCount != null and commentCount != ''"> and comment_count = #{commentCount} </if>
-		  		  <if test="modifyTime != null and modifyTime != ''"> and modify_time = #{modifyTime} </if>
-		  		  <if test="readingCount != null and readingCount != ''"> and reading_count = #{readingCount} </if>
-		  		</where>
-	</select>
-	 
-	<insert id="save" parameterType="com.bootdo.a5.domain.FitnessActivityDO" useGeneratedKeys="true" keyProperty="id">
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <resultMap type="com.bootdo.a5.domain.FitnessActivityDO" id="fitActivityBean" autoMapping="true">
+        <result property="id" column="id"/>
+        <association property="bizModuleDO" javaType="com.bootdo.a5.domain.BizModuleDO" autoMapping="true">
+            <result property="id" column="biz_id"/>
+        </association>
+    </resultMap>
+
+    <select id="count" resultType="int">
+        select count(*)
+        FROM
+        `fitness_activity` as a
+        left JOIN
+        (
+        select
+            b.`id` as biz_id ,
+            b.`biz_category` ,
+            b.`object_type` ,
+            b.`object_id` ,
+            b.`create_user_id` ,
+            b.`create_date` ,
+            b.`update_user_id` ,
+            b.`update_date` ,
+            b.`company`
+        from
+          `biz_module` as b
+        WHERE
+         b.object_type = 'FIT'
+        )
+        as b ON a.`id` = b.`object_id`
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="title != null and title != ''">and title = #{title}</if>
+            <if test="descrption != null and descrption != ''">and descrption = #{descrption}</if>
+            <if test="wechatUserId != null and wechatUserId != ''">and wechat_user_id = #{wechatUserId}</if>
+            <if test="nickName != null and nickName != ''">and nick_name = #{nickName}</if>
+            <if test="avatar != null and avatar != ''">and avatar = #{avatar}</if>
+            <if test="project != null and project != ''">and project = #{project}</if>
+            <if test="companyRole != null and companyRole != ''">and company_role = #{companyRole}</if>
+            <if test="signStartTime != null and signStartTime != ''">and sign_start_time = #{signStartTime}</if>
+            <if test="signEndTime != null and signEndTime != ''">and sign_end_time = #{signEndTime}</if>
+            <if test="activityStartTime != null and activityStartTime != ''">and activity_start_time =
+                #{activityStartTime}
+            </if>
+            <if test="activityEndTime != null and activityEndTime != ''">and activity_end_time = #{activityEndTime}</if>
+            <if test="commentCount != null and commentCount != ''">and comment_count = #{commentCount}</if>
+            <if test="modifyTime != null and modifyTime != ''">and modify_time = #{modifyTime}</if>
+            <if test="readingCount != null and readingCount != ''">and reading_count = #{readingCount}</if>
+            <if test="company != null and company != ''">and company = #{company}</if>
+            <if test="bizCategory != null and bizCategory != ''">and biz_category = #{bizCategory}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.a5.domain.FitnessActivityDO" useGeneratedKeys="true" keyProperty="id">
 		insert into fitness_activity
 		(
 			`title`, 
@@ -96,37 +217,37 @@
 			#{readingCount}
 		)
 	</insert>
-	 
-	<update id="update" parameterType="com.bootdo.a5.domain.FitnessActivityDO">
-		update fitness_activity 
-		<set>
-			<if test="title != null">`title` = #{title}, </if>
-			<if test="descrption != null">`descrption` = #{descrption}, </if>
-			<if test="wechatUserId != null">`wechat_user_id` = #{wechatUserId}, </if>
-			<if test="nickName != null">`nick_name` = #{nickName}, </if>
-			<if test="avatar != null">`avatar` = #{avatar}, </if>
-			<if test="project != null">`project` = #{project}, </if>
-			<if test="companyRole != null">`company_role` = #{companyRole}, </if>
-			<if test="signStartTime != null">`sign_start_time` = #{signStartTime}, </if>
-			<if test="signEndTime != null">`sign_end_time` = #{signEndTime}, </if>
-			<if test="activityStartTime != null">`activity_start_time` = #{activityStartTime}, </if>
-			<if test="activityEndTime != null">`activity_end_time` = #{activityEndTime}, </if>
-			<if test="commentCount != null">`comment_count` = #{commentCount}, </if>
-			<if test="modifyTime != null">`modify_time` = #{modifyTime}, </if>
-			<if test="readingCount != null">`reading_count` = #{readingCount}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="remove">
+
+    <update id="update" parameterType="com.bootdo.a5.domain.FitnessActivityDO">
+        update fitness_activity
+        <set>
+            <if test="title != null">`title` = #{title},</if>
+            <if test="descrption != null">`descrption` = #{descrption},</if>
+            <if test="wechatUserId != null">`wechat_user_id` = #{wechatUserId},</if>
+            <if test="nickName != null">`nick_name` = #{nickName},</if>
+            <if test="avatar != null">`avatar` = #{avatar},</if>
+            <if test="project != null">`project` = #{project},</if>
+            <if test="companyRole != null">`company_role` = #{companyRole},</if>
+            <if test="signStartTime != null">`sign_start_time` = #{signStartTime},</if>
+            <if test="signEndTime != null">`sign_end_time` = #{signEndTime},</if>
+            <if test="activityStartTime != null">`activity_start_time` = #{activityStartTime},</if>
+            <if test="activityEndTime != null">`activity_end_time` = #{activityEndTime},</if>
+            <if test="commentCount != null">`comment_count` = #{commentCount},</if>
+            <if test="modifyTime != null">`modify_time` = #{modifyTime},</if>
+            <if test="readingCount != null">`reading_count` = #{readingCount}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
 		delete from fitness_activity where id = #{value}
 	</delete>
-	
-	<delete id="batchRemove">
-		delete from fitness_activity where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+
+    <delete id="batchRemove">
+        delete from fitness_activity where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 
 </mapper>

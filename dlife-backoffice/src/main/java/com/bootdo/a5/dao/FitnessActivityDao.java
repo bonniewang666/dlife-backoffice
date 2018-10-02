@@ -28,4 +28,11 @@ public interface FitnessActivityDao {
 	int remove(Long id);
 	
 	int batchRemove(Long[] ids);
+
+
+	/**
+	 * 批量修改
+	 * */
+	int batchMove(Long[] ids);
+
 }
