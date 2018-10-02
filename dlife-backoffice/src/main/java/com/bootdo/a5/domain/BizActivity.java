@@ -1,89 +1,109 @@
 package com.bootdo.a5.domain;
 
+import com.bootdo.common.utils.Base64Utils;
+
 import java.io.Serializable;
 import java.util.Date;
 
 
 /**
  * 业务板块下活动mapping对象
- * 
+ *
  * @author david
  * @email aitp@accenture.com
  * @date 2018-10-02 00:00:01
  */
 public class BizActivity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String company;
-	private String bizCategory;
-	private String objectType;
-	private Long objectId;
-	private String objectTitle;
-	private Long createUserId;
-	private Date lastUpdateTime;
+    private Long id;
+    private String company;
+    private String bizCategory;
+    private String objectType;
+    private Long objectId;
+    private String objectTitle;
+    private Long createUserId;
+    private Date lastUpdateTime;
+    private String nickName;
+    private String avatar;
 
-	public Long getId() {
-		return id;
-	}
+    public String getNickName() {
+        return Base64Utils.decode( nickName );
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
 
-	public String getCompany() {
-		return company;
-	}
+    public String getAvatar() {
+        return avatar;
+    }
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
-	public String getBizCategory() {
-		return bizCategory;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setBizCategory(String bizCategory) {
-		this.bizCategory = bizCategory;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getObjectType() {
-		return objectType;
-	}
+    public String getCompany() {
+        return company;
+    }
 
-	public void setObjectType(String objectType) {
-		this.objectType = objectType;
-	}
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public Long getObjectId() {
-		return objectId;
-	}
+    public String getBizCategory() {
+        return bizCategory;
+    }
 
-	public void setObjectId(Long objectId) {
-		this.objectId = objectId;
-	}
+    public void setBizCategory(String bizCategory) {
+        this.bizCategory = bizCategory;
+    }
 
-	public String getObjectTitle() {
-		return objectTitle;
-	}
+    public String getObjectType() {
+        return objectType;
+    }
 
-	public void setObjectTitle(String objectTitle) {
-		this.objectTitle = objectTitle;
-	}
+    public void setObjectType(String objectType) {
+        this.objectType = objectType;
+    }
 
-	public Long getCreateUserId() {
-		return createUserId;
-	}
+    public Long getObjectId() {
+        return objectId;
+    }
 
-	public void setCreateUserId(Long createUserId) {
-		this.createUserId = createUserId;
-	}
+    public void setObjectId(Long objectId) {
+        this.objectId = objectId;
+    }
 
-	public Date getLastUpdateTime() {
-		return lastUpdateTime;
-	}
+    public String getObjectTitle() {
+        return objectTitle;
+    }
 
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
-	}
+    public void setObjectTitle(String objectTitle) {
+        this.objectTitle = objectTitle;
+    }
+
+    public Long getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(Long createUserId) {
+        this.createUserId = createUserId;
+    }
+
+    public Date getLastUpdateTime() {
+        return lastUpdateTime;
+    }
+
+    public void setLastUpdateTime(Date lastUpdateTime) {
+        this.lastUpdateTime = lastUpdateTime;
+    }
 }

@@ -38,6 +38,9 @@ function load() {
                         // username:$('#searchName').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -56,7 +59,7 @@ function load() {
                         field: 'activitiyTile',
                         title: '活动名称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/fanActivity/detail/' + row.id + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.id+'" href="/a5/fanActivity/detail/' + row.id + '">' + value + '</a>';
                         }
                     },
 
@@ -145,7 +148,7 @@ function load() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
 
@@ -328,6 +331,9 @@ function loadAttendee() {
                         pinFanActivityId: $('#id').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -350,14 +356,14 @@ function loadAttendee() {
                         field: 'avatar',
                         title: '头像',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + '<img src="' + value + '" /></a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
@@ -426,6 +432,9 @@ function loadComment() {
                         objectId: $('#id').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -457,7 +466,7 @@ function loadComment() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {

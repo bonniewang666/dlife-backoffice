@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.a5.domain.BizActivity;
 import com.bootdo.common.domain.DictDO;
 import com.bootdo.common.service.DictService;
 import com.bootdo.common.utils.ShiroUtils;
@@ -136,13 +137,26 @@ public class BizModuleController {
 
 
     @ResponseBody
-    @GetMapping("/bizModule/{type}")
-    public List<DictDO> bizModule(@PathVariable("type") String type) {
+    @GetMapping("/modules/{type}")
+    public List<DictDO> module(@PathVariable("type") String type) {
         // 查询列表数据
         Map<String, Object> map = new HashMap<>(16);
         map.put("type", type);
         List<DictDO> dictList = dictService.list(map);
         return dictList;
+    }
+
+
+    @ResponseBody
+    @GetMapping("/listActivities")
+    @RequiresPermissions("a5:bizModule:bizModule")
+    public PageUtils listActivities(@RequestParam Map<String, Object> params) {
+        //查询列表数据
+        Query query = new Query(params);
+        List<BizActivity> bizActivitiesList = bizModuleService.listActivities(query);
+        int total = bizModuleService.count(query);
+        PageUtils pageUtils = new PageUtils(bizActivitiesList, total);
+        return pageUtils;
     }
 
 }

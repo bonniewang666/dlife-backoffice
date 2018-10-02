@@ -100,6 +100,9 @@ function loadQuestions() {
                         // username:$('#searchName').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -114,14 +117,14 @@ function loadQuestions() {
                         field: 'id',
                         title: '问题编号',
                         formatter: function (value, row, index) {
-                            return '<a href="' + prefix + '/detail/' + row.id + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.id+'" href="/a5/question/detail/' + row.id + '">' + value + '</a>';
                         }
                     },
                     {
                         field: 'title',
                         title: '问题标题',
                         formatter: function (value, row, index) {
-                            return '<a href="' + prefix + '/detail/' + row.id + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.id+'" href="/a5/question/detail/' + row.id + '">' + value + '</a>';
                         }
                     },
                     // {
@@ -139,7 +142,8 @@ function loadQuestions() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            // return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'" href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
@@ -210,6 +214,9 @@ function loadFanActivity() {
                         // username:$('#searchName').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -228,7 +235,7 @@ function loadFanActivity() {
                         field: 'activitiyTile',
                         title: '活动名称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/fanActivity/detail/' + row.id + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.id+'" href="/a5/fanActivity/detail/' + row.id + '">' + value + '</a>';
                         }
                     },
                     // {
@@ -246,7 +253,7 @@ function loadFanActivity() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
@@ -362,6 +369,9 @@ function loadFitnessActivity() {
                         // username:$('#searchName').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -380,7 +390,8 @@ function loadFitnessActivity() {
                         field: 'title',
                         title: '活动标题',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/fitnessActivity/detail/' + row.id + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.id+'" href="/a5/fitnessActivity/detail/' + row.id + '">' + value + '</a>';
+
                         }
                     },
                     // {
@@ -403,7 +414,7 @@ function loadFitnessActivity() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
 
@@ -481,6 +492,9 @@ function loadComment() {
                         wechatUserId: $('#id').val()
                     };
                 },
+                onLoadSuccess: function(data){
+                    $('.J_menuItem').on('click', menuItem);
+                },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
                 // queryParamsType = 'limit' ,返回参数必须包含
                 // limit, offset, search, sort, order 否则, 需要包含:
@@ -515,19 +529,19 @@ function loadComment() {
                         field: 'objectId',
                         title: '关联对象编号',
                         formatter: function (value, row, index) {
-                            if( value != '' && value != null ) {
-                                if(row.channel == 'FIT')
+                            if (value != '' && value != null) {
+                                if (row.channel == 'FIT')
                                 // 小目标
-                                    return '<a href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
-                                else if(row.channel == 'POINT_PRODUCT')
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                else if (row.channel == 'POINT_PRODUCT')
                                 // 积分商城
-                                    return '<a href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
-                                else if(row.channel == 'FAQS')
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/fitnessActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                else if (row.channel == 'FAQS')
                                 // 小问答
-                                    return '<a href="/a5/question/detail/' + row.objectId + '">' + value + '</a>';
-                                else if(row.channel == 'PIN')
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/question/detail/' + row.objectId + '">' + value + '</a>';
+                                else if (row.channel == 'PIN')
                                 // 小邀约
-                                    return '<a href="/a5/fanActivity/detail/' + row.objectId + '">' + value + '</a>';
+                                    return '<a class="J_menuItem" data-index="'+row.objectId+'" href="/a5/fanActivity/detail/' + row.objectId + '">' + value + '</a>';
                             } else
                                 return value;
                         }
@@ -555,7 +569,7 @@ function loadComment() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
 

@@ -1,5 +1,6 @@
 package com.bootdo.a5.service;
 
+import com.bootdo.a5.domain.BizActivity;
 import com.bootdo.a5.domain.BizModuleDO;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface BizModuleService {
 	int remove(Long id);
 	
 	int batchRemove(Long[] ids);
+
+	public List<BizActivity> listActivities(Map<String, Object> map);
 }

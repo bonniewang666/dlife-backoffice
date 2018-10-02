@@ -102,7 +102,7 @@
         </foreach>
     </delete>
 
-    <select id="listActivitiesByBizCategory" resultType="com.bootdo.a5.domain.BizActivity">
+    <select id="listActivities" resultType="com.bootdo.a5.domain.BizActivity">
         select
         biz_activity.id ,
         company ,
