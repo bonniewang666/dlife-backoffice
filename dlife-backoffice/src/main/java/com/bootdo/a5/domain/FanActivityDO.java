@@ -79,6 +79,17 @@ public class FanActivityDO implements Serializable {
 	//置顶顺序
 	private Integer numOrder;
 
+	//所属业务板块
+	private BizModuleDO bizModuleDO =new BizModuleDO();
+
+	public BizModuleDO getBizModuleDO() {
+		return bizModuleDO;
+	}
+
+	public void setBizModuleDO(BizModuleDO bizModuleDO) {
+		this.bizModuleDO = bizModuleDO;
+	}
+
 
 	public Integer getSetTop() {
 		return setTop;

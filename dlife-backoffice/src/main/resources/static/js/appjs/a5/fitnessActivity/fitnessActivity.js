@@ -10,10 +10,6 @@ $().ready(function() {
     $("#bizCategory").chosen({
         maxHeight : 200
     });
-
-    $("#targetCompany").chosen({
-        maxHeight : 200
-    });
 });
 
 function load() {
@@ -67,16 +63,16 @@ function load() {
                         checkbox: true
                     },
                     {
-                        field: 'id',
-                        title: ''
-                    },
-                    {
                         field: 'bizModuleDO.company',
                         title: '公司'
                     },
                     {
                         field: 'bizModuleDO.bizCategory',
                         title: '板块'
+                    },
+                    {
+                        field: 'id',
+                        title: '编号'
                     },
                     {
                         field: 'title',
@@ -630,39 +626,3 @@ function loadClockIn(){
 }
 
 
-function batchMove(){
-    var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
-    if (rows.length == 0) {
-        layer.msg("请选择要修改的数据");
-        return;
-    }
-    layer.confirm("确认要修改选中的'" + rows.length + "'条数据吗?", {
-        btn: ['确定', '取消']
-        // 按钮
-    }, function () {
-        var ids = new Array();
-        // 遍历所有选择的行数据，取每条数据对应的ID
-        $.each(rows, function (i, row) {
-            ids[i] = row['id'];
-        });
-        $.ajax({
-            type: 'POST',
-            data: {
-                "targetCompany": $("#targetCompany").val(),
-                "targetBizCategory": $("#targetBizCategory").val(),
-                "ids": ids
-            },
-            url: prefix + '/batchMove',
-            success: function (r) {
-                if (r.code == 0) {
-                    layer.msg(r.msg);
-                    reLoad();
-                } else {
-                    layer.msg(r.msg);
-                }
-            }
-        });
-    }, function () {
-
-    });
-}

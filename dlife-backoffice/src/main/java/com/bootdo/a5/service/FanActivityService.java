@@ -27,4 +27,6 @@ public interface FanActivityService {
 	int remove(Long id);
 	
 	int batchRemove(Long[] ids);
+
+	int batchMove(String targetCompany, String targetBizCategory, Long[] ids);
 }

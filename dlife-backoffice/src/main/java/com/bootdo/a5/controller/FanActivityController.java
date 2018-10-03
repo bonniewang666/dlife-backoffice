@@ -3,6 +3,8 @@ package com.bootdo.a5.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.common.domain.DictDO;
+import com.bootdo.common.service.DictService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -34,11 +36,15 @@ import com.bootdo.common.utils.R;
 public class FanActivityController {
 	@Autowired
 	private FanActivityService fanActivityService;
+	@Autowired
+	private DictService dictService;
 	
 	@GetMapping()
 	@RequiresPermissions("a5:fanActivity:fanActivity")
-	String FanActivity(){
-	    return "a5/fanActivity/fanActivity";
+	String FanActivity(Model model){
+		List<DictDO> dictDOs = dictService.listByType("company");
+		model.addAttribute("companies", dictDOs);
+		return "a5/fanActivity/fanActivity";
 	}
 	
 	@ResponseBody
@@ -121,5 +127,18 @@ public class FanActivityController {
 		model.addAttribute("fanActivity", fanActivity);
 		return "a5/fanActivity/detail";
 	}
-	
+
+	/**
+	 * 批量移动
+	 */
+	@PostMapping("/batchMove")
+	@ResponseBody
+	@RequiresPermissions("a5:fanActivity:edit")
+	public R batchMove(@RequestParam("targetCompany") String targetCompany, @RequestParam("targetBizCategory") String
+			targetBizCategory, @RequestParam("ids[]") Long[] ids) {
+		fanActivityService.batchMove(targetCompany, targetBizCategory, ids);
+		return R.ok();
+	}
+
+
 }

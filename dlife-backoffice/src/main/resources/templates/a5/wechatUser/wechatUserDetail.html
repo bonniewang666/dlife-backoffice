@@ -11,6 +11,7 @@
             <div class="ibox">
                 <div class="ibox-title" style="padding-bottom: 0;">
                     <!--<button class="btn btn-warning" onclick="history.back()">返回</button>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                    <img id="avatar" name="avatar" th:src="${wechatUser.avatar}"/>
                     <span class="text-left font-bold" th:text="${wechatUser.nickName}"></span>&nbsp;&nbsp;&nbsp;&nbsp;的个人信息
                     <div>&nbsp;</div>
                     <div class="gg-nav">
@@ -50,12 +51,7 @@
                                     <h3 th:text="${wechatUser.nickName}"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">头像：</label>
-                                <div class="col-sm-8">
-                                    <img id="avatar" name="avatar" th:src="${wechatUser.avatar}"/>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">名称：</label>
                                 <div class="col-sm-8">

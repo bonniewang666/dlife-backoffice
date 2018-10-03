@@ -129,13 +129,6 @@
         </if>
     </select>
 
-    <resultMap type="com.bootdo.a5.domain.FitnessActivityDO" id="fitActivityBean" autoMapping="true">
-        <result property="id" column="id"/>
-        <association property="bizModuleDO" javaType="com.bootdo.a5.domain.BizModuleDO" autoMapping="true">
-            <result property="id" column="biz_id"/>
-        </association>
-    </resultMap>
-
     <select id="count" resultType="int">
         select count(*)
         FROM
@@ -180,6 +173,13 @@
             <if test="bizCategory != null and bizCategory != ''">and biz_category = #{bizCategory}</if>
         </where>
     </select>
+
+    <resultMap type="com.bootdo.a5.domain.FitnessActivityDO" id="fitActivityBean" autoMapping="true">
+        <result property="id" column="id"/>
+        <association property="bizModuleDO" javaType="com.bootdo.a5.domain.BizModuleDO" autoMapping="true">
+            <result property="id" column="biz_id"/>
+        </association>
+    </resultMap>
 
     <insert id="save" parameterType="com.bootdo.a5.domain.FitnessActivityDO" useGeneratedKeys="true" keyProperty="id">
 		insert into fitness_activity

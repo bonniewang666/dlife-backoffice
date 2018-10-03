@@ -1,6 +1,15 @@
 var prefix = "/a5/fanActivity"
 $(function () {
     load();
+    $("#companySelect").chosen().change(function () {
+        var companyCode = $("#companySelect").val();
+        loadModules(companyCode);
+        reLoad();
+    });
+
+    $("#bizCategory").chosen({
+        maxHeight: 200
+    });
 });
 
 function load() {
@@ -9,9 +18,9 @@ function load() {
             {
                 method: 'get', // 服务器数据的请求方式 get or post
                 url: prefix + "/list", // 服务器数据的加载地址
-                showRefresh: true,
-                showToggle: true,
-                showColumns: true,
+                // showRefresh: true,
+                // showToggle: true,
+                // showColumns: true,
                 iconSize: 'outline',
                 toolbar: '#exampleToolbar',
                 striped: true, // 设置为true会有隔行变色效果
@@ -25,7 +34,7 @@ function load() {
                 pageSize: 10, // 如果设置了分页，每页数据条数
                 pageNumber: 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
-                showColumns: true, // 是否显示内容下拉框（选择显示的列）
+                showColumns: false, // 是否显示内容下拉框（选择显示的列）
                 sidePagination: "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                 queryParams: function (params) {
                     return {
@@ -34,11 +43,13 @@ function load() {
                         offset: params.offset,
                         activitiyTile: $('#searchTitle').val(),
                         wechatUserId: $('#searchAuthorId').val(),
-                        id:$('#searchId').val()
+                        id: $('#searchId').val(),
+                        bizCategory: $('#bizCategory').val(),
+                        company: $('#companySelect').val()
                         // username:$('#searchName').val()
                     };
                 },
-                onLoadSuccess: function(data){
+                onLoadSuccess: function (data) {
                     $('.J_menuItem').on('click', menuItem);
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -52,26 +63,68 @@ function load() {
                         checkbox: true
                     },
                     {
-                        field: 'id',
-                        title: 'ID'
+                        field: 'bizModuleDO.company',
+                        title: '公司'
                     },
+                    {
+                        field: 'bizModuleDO.bizCategory',
+                        title: '板块'
+                    },
+                    {
+                        field: 'id',
+                        title: '编号'
+                    },
+
                     {
                         field: 'activitiyTile',
                         title: '活动名称',
                         formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.id+'" href="/a5/fanActivity/detail/' + row.id + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="' + row.id + '" href="/a5/fanActivity/detail/' + row.id + '">' + value + '</a>';
                         }
                     },
 
                     {
-                        field: 'activitiyType',
-                        title: '活动类型'
+                        field: 'setTop',
+                        title: '是否置顶',
+                        formatter: function (value, row, index) {
+                            if (value == 1) {
+                                return '是'
+                            } else {
+                                return '否'
+                            }
+
+                        }
                     },
 
                     {
-                        field: 'budget',
-                        title: '人均预算'
+                        field: 'numOrder',
+                        title: '置顶顺序'
                     },
+                    {
+                        field: 'official',
+                        title: '是否官方',
+                        formatter: function (value, row, index) {
+                            if (value == 1) {
+                                return '是'
+                            } else {
+                                return '否'
+                            }
+
+                        }
+                    },
+
+
+
+
+                    // {
+                    //     field: 'activitiyType',
+                    //     title: '活动类型'
+                    // },
+                    //
+                    // {
+                    //     field: 'budget',
+                    //     title: '人均预算'
+                    // },
                     // {
                     //     field: 'activitiyAddre',
                     //     title: '活动地址'
@@ -112,9 +165,9 @@ function load() {
                     // 	field : 'payType',
                     // 	title : '支付类型'
                     // },
-                    								{
-                    	field : 'deadline',
-                    	title : '截至日期'
+                    {
+                        field: 'deadline',
+                        title: '截至日期'
                     },
                     // {
                     //     field: 'jhiComment',
@@ -133,10 +186,10 @@ function load() {
                         field: 'readingCount',
                         title: '浏览次数'
                     },
-                    {
-                        field: 'wechatUserId',
-                        title: '微信编号'
-                    },
+                    // {
+                    //     field: 'wechatUserId',
+                    //     title: '微信编号'
+                    // },
                     // {
                     //     field: 'avatar',
                     //     title: '头像',
@@ -148,47 +201,15 @@ function load() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
-                        }
-                    },
-
-                    {
-                        field : 'setTop',
-                        title : '是否置顶',
-                        formatter: function (value, row, index) {
-                            if( value == 1) {
-                                return '是'
-                            } else {
-                                return '否'
-                            }
-
+                            return '<a class="J_menuItem" data-index="' + row.wechatUserId + '"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
 
 
 
                     {
-                        field : 'official',
-                        title : '是否官方',
-                        formatter: function (value, row, index) {
-                            if( value == 1) {
-                                return '是'
-                            } else {
-                                return '否'
-                            }
-
-                        }
-                    },
-
-
-                    {
-                        field : 'numOrder',
-                        title : '置顶顺序'
-                    },
-
-                    								{
-                    	field : 'modifyTime',
-                    	title : '最后修改时间'
+                        field: 'modifyTime',
+                        title: '最后修改时间'
                     },
                     {
                         title: '操作',
@@ -303,35 +324,35 @@ function loadAttendee() {
     $('#attendeeTable')
         .bootstrapTable(
             {
-                method : 'get', // 服务器数据的请求方式 get or post
-                url : prefix + "/list", // 服务器数据的加载地址
+                method: 'get', // 服务器数据的请求方式 get or post
+                url: prefix + "/list", // 服务器数据的加载地址
                 //	showRefresh : true,
                 //	showToggle : true,
                 //	showColumns : true,
-                iconSize : 'outline',
-                toolbar : '#exampleToolbar',
-                striped : true, // 设置为true会有隔行变色效果
-                dataType : "json", // 服务器返回的数据类型
-                pagination : true, // 设置为true会在底部显示分页条
+                iconSize: 'outline',
+                toolbar: '#exampleToolbar',
+                striped: true, // 设置为true会有隔行变色效果
+                dataType: "json", // 服务器返回的数据类型
+                pagination: true, // 设置为true会在底部显示分页条
                 // queryParamsType : "limit",
                 // //设置为limit则会发送符合RESTFull格式的参数
-                singleSelect : false, // 设置为true将禁止多选
+                singleSelect: false, // 设置为true将禁止多选
                 // contentType : "application/x-www-form-urlencoded",
                 // //发送到服务器的数据编码类型
-                pageSize : 10, // 如果设置了分页，每页数据条数
-                pageNumber : 1, // 如果设置了分布，首页页码
+                pageSize: 10, // 如果设置了分页，每页数据条数
+                pageNumber: 1, // 如果设置了分布，首页页码
                 //search : true, // 是否显示搜索框
-                showColumns : false, // 是否显示内容下拉框（选择显示的列）
-                sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
-                queryParams : function(params) {
+                showColumns: false, // 是否显示内容下拉框（选择显示的列）
+                sidePagination: "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
+                queryParams: function (params) {
                     return {
                         //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                         limit: params.limit,
-                        offset:params.offset,
+                        offset: params.offset,
                         pinFanActivityId: $('#id').val()
                     };
                 },
-                onLoadSuccess: function(data){
+                onLoadSuccess: function (data) {
                     $('.J_menuItem').on('click', menuItem);
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -340,17 +361,18 @@ function loadAttendee() {
                 // pageSize, pageNumber, searchText, sortName,
                 // sortOrder.
                 // 返回false将会终止请求
-                columns : [
+                columns: [
                     {
-                        checkbox : true
+                        checkbox: true
                     },
                     {
-                        field : 'id',
-                        title : '编号'
+                        field: 'id',
+                        title: '编号'
                     },
+
                     {
-                        field : 'wechatUserId',
-                        title : '微信编号'
+                        field: 'wechatUserId',
+                        title: '微信编号'
                     },
                     {
                         field: 'avatar',
@@ -363,36 +385,36 @@ function loadAttendee() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="' + row.wechatUserId + '"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
-                        field : 'participationTime',
-                        title : '加入时间'
+                        field: 'participationTime',
+                        title: '加入时间'
                     },
                     {
-                        field : 'activitiyTile',
-                        title : '活动类型'
+                        field: 'activitiyTile',
+                        title: '活动类型'
                     },
                     // {
                     //     field : 'pinFanActivityId',
                     //     title : '活动编号'
                     // },
                     {
-                        title : '操作',
-                        field : 'id',
-                        align : 'center',
-                        formatter : function(value, row, index) {
+                        title: '操作',
+                        field: 'id',
+                        align: 'center',
+                        formatter: function (value, row, index) {
                             var e = '';
-                            var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                            var d = '<a class="btn btn-warning btn-sm ' + s_remove_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
                                 + row.id
                                 + '\')"><i class="fa fa-remove"></i></a> ';
                             var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
                                 + row.id
                                 + '\')"><i class="fa fa-key"></i></a> ';
-                            return e + d ;
+                            return e + d;
                         }
-                    } ]
+                    }]
             });
 }
 
@@ -428,11 +450,11 @@ function loadComment() {
                         //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                         limit: params.limit,
                         offset: params.offset,
-                        channel:'PIN',
+                        channel: 'PIN',
                         objectId: $('#id').val()
                     };
                 },
-                onLoadSuccess: function(data){
+                onLoadSuccess: function (data) {
                     $('.J_menuItem').on('click', menuItem);
                 },
                 // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
@@ -466,7 +488,7 @@ function loadComment() {
                         field: 'nickName',
                         title: '昵称',
                         formatter: function (value, row, index) {
-                            return '<a class="J_menuItem" data-index="'+row.wechatUserId+'"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
+                            return '<a class="J_menuItem" data-index="' + row.wechatUserId + '"' + ' href="/a5/wechatUser/detail/' + row.wechatUserId + '">' + value + '</a>';
                         }
                     },
                     {
@@ -479,7 +501,7 @@ function loadComment() {
                         title: '父编号',
                         formatter: function (value, row, index) {
                             if (value != '' && value != null)
-                                return '<a href="/a5/comment/parent/' +value+ '">' + value + '</a>';
+                                return '<a href="/a5/comment/parent/' + value + '">' + value + '</a>';
                             else
                                 return value;
                         }

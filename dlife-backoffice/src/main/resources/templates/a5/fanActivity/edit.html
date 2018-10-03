@@ -42,21 +42,10 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">活动描述：</label>
                             <div class="col-sm-8">
-                                <textarea id="descrption" name="descrption" cols="50" rows="10" >[[${fanActivity
-                                    .descrption}]]</textarea>
+                                <textarea id="descrption" name="descrption" class="form-control" type="text"
+                                          cols="50" rows="10">[[${fanActivity.descrption}]]</textarea>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">是否官方：</label>
-                            <div class="col-sm-8">
-                                是 <input type="radio" name="official" value="1" th:field="*{fanActivity.official}"
-                                         class="radio-inline">
-                                否 <input type="radio" name="official" value="0" th:field="*{fanActivity.official}"
-                                         class="radio-inline">
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label class="col-sm-3 control-label">是否置顶：</label>
                             <div class="col-sm-8">
@@ -72,7 +61,15 @@
                                 <input id="numOrder" name="numOrder" th:value="${fanActivity.numOrder}" class="form-control" type="text">
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否官方：</label>
+                            <div class="col-sm-8">
+                                是 <input type="radio" name="official" value="1" th:field="*{fanActivity.official}"
+                                         class="radio-inline">
+                                否 <input type="radio" name="official" value="0" th:field="*{fanActivity.official}"
+                                         class="radio-inline">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">活动类型：</label>
                             <div class="col-sm-8">
@@ -179,7 +176,8 @@
                             <div class="col-sm-8">
                                 <!--<input id="jhiComment" name="jhiComment" th:value="${fanActivity.jhiComment}"-->
                                        <!--class="form-control" type="text">-->
-                                <textarea id="jhiComment" name="jhiComment" cols="50" rows="10" >[[${fanActivity.jhiComment}]]</textarea>
+                                <textarea id="jhiComment" name="jhiComment" class="form-control" type="text"
+                                          cols="50" rows="10">[[${fanActivity.jhiComment}]]</textarea>
                             </div>
                         </div>
                         <div class="form-group">
