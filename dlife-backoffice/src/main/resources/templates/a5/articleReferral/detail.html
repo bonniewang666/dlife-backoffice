@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${articleReferral.id}" type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">关联网页抓取器：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.crawlerId}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">标题：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.originTitle}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">概述：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.originSummary}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">原内容：</label>
+                            <div class="col-sm-8">
+                                <span th:utext="${articleReferral.orginContent}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">文章地址：</label>
+                            <div class="col-sm-8">
+                                <a th:href="${articleReferral.originUrl}">
+                                    <h3 th:text="${articleReferral.originUrl}"/></a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Md5 URL，用于排重：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.originUrlCode}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">图片URL的标识：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.originImgUrl}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.originCreateDate}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">作者：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.author}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建人：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.createUserId}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.createDate}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改人：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.updateUserId}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">修改时间：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${articleReferral.updateDate}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/a5/articleReferral/edit.js">
+</script>
+<script>
+    window.onload = function () {
+        var w = 800;//设置最大宽度,也可根据img的外部容器 而动态获得,比如：$("#demo").width();
+        $("img").each(function () {//如果有很多图片,使用each()遍历
+            var img_w = $(this).width();//图片宽度
+            var img_h = $(this).height();//图片高度
+            if (img_w > w) {//如果图片宽度超出指定最大宽度
+                var height = (w * img_h) / img_w; //高度等比缩放
+                $(this).css({
+                    "width": w, "height": height
+                });//设置缩放后的宽度和高度
+            }
+        });
+    }
+</script>
+</body>
+</html>

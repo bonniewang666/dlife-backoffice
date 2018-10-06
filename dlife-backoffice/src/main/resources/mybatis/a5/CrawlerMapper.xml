@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.a5.dao.CrawlerDao">
+
+    <select id="get" resultType="com.bootdo.a5.domain.CrawlerDO">
+		select
+		`id`,`channel_name`,`channel_description`,`symbol_page_number`,`channel_url`,`symbol_title`,`symbol_summary`,`symbol_create_date`,`symbol_img_url`,`symbol_author`,`create_user_id`,`create_date`,`update_user_id`,`update_date`,`symbol_url`,`symbol_paragraph`,`executed` from crawler where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.bootdo.a5.domain.CrawlerDO">
+        select
+        `id`,`channel_name`,`channel_description`,`symbol_page_number`,`channel_url`,`symbol_title`,`symbol_summary`,`symbol_create_date`,`symbol_img_url`,`symbol_author`,`create_user_id`,`create_date`,`update_user_id`,`update_date`,`symbol_url`,`symbol_paragraph`,`executed`
+        from crawler
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="channelName != null and channelName != ''">and channel_name = #{channelName}</if>
+            <if test="channelDescription != null and channelDescription != ''">and channel_description =
+                #{channelDescription}
+            </if>
+            <if test="symbolPageNumber != null and symbolPageNumber != ''">and symbol_page_number =
+                #{symbolPageNumber}
+            </if>
+            <if test="channelUrl != null and channelUrl != ''">and channel_url = #{channelUrl}</if>
+            <if test="symbolTitle != null and symbolTitle != ''">and symbol_title = #{symbolTitle}</if>
+            <if test="symbolSummary != null and symbolSummary != ''">and symbol_summary = #{symbolSummary}</if>
+            <if test="symbolCreateDate != null and symbolCreateDate != ''">and symbol_create_date =
+                #{symbolCreateDate}
+            </if>
+            <if test="symbolImgUrl != null and symbolImgUrl != ''">and symbol_img_url = #{symbolImgUrl}</if>
+            <if test="symbolAuthor != null and symbolAuthor != ''">and symbol_author = #{symbolAuthor}</if>
+            <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
+            <if test="createDate != null and createDate != ''">and create_date = #{createDate}</if>
+            <if test="updateUserId != null and updateUserId != ''">and update_user_id = #{updateUserId}</if>
+            <if test="updateDate != null and updateDate != ''">and update_date = #{updateDate}</if>
+            <if test="symbolUrl != null and symbolUrl != ''">and symbol_url = #{symbolUrl}</if>
+
+            <if test="symbolParagraph != null and symbolParagraph != ''">and symbol_paragraph =
+                #{symbolParagraph}</if>
+            <if test="executed != null and executed != ''">and executed = #{executed}</if>
+
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from crawler
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="channelName != null and channelName != ''">and channel_name = #{channelName}</if>
+            <if test="channelDescription != null and channelDescription != ''">and channel_description =
+                #{channelDescription}
+            </if>
+            <if test="symbolPageNumber != null and symbolPageNumber != ''">and symbol_page_number =
+                #{symbolPageNumber}
+            </if>
+            <if test="channelUrl != null and channelUrl != ''">and channel_url = #{channelUrl}</if>
+            <if test="symbolTitle != null and symbolTitle != ''">and symbol_title = #{symbolTitle}</if>
+            <if test="symbolSummary != null and symbolSummary != ''">and symbol_summary = #{symbolSummary}</if>
+            <if test="symbolCreateDate != null and symbolCreateDate != ''">and symbol_create_date =
+                #{symbolCreateDate}
+            </if>
+            <if test="symbolImgUrl != null and symbolImgUrl != ''">and symbol_img_url = #{symbolImgUrl}</if>
+            <if test="symbolAuthor != null and symbolAuthor != ''">and symbol_author = #{symbolAuthor}</if>
+            <if test="createUserId != null and createUserId != ''">and create_user_id = #{createUserId}</if>
+            <if test="createDate != null and createDate != ''">and create_date = #{createDate}</if>
+            <if test="updateUserId != null and updateUserId != ''">and update_user_id = #{updateUserId}</if>
+            <if test="updateDate != null and updateDate != ''">and update_date = #{updateDate}</if>
+            <if test="symbolUrl != null and symbolUrl != ''">and symbol_url = #{symbolUrl}</if>
+
+            <if test="symbolParagraph != null and symbolParagraph != ''">and symbol_paragraph = #{symbolParagraph}</if>
+            <if test="executed != null and executed != ''">and executed = #{executed}</if>
+
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.bootdo.a5.domain.CrawlerDO">
+		insert into crawler
+		(
+			`id`, 
+			`channel_name`, 
+			`channel_description`, 
+			`symbol_page_number`, 
+			`channel_url`, 
+			`symbol_title`, 
+			`symbol_summary`, 
+			`symbol_create_date`, 
+			`symbol_img_url`, 
+			`symbol_author`, 
+			`create_user_id`, 
+			`create_date`, 
+			`update_user_id`, 
+			`update_date`,
+			`symbol_url`,
+			`symbol_paragraph`,
+			`executed`
+		)
+		values
+		(
+			#{id}, 
+			#{channelName}, 
+			#{channelDescription}, 
+			#{symbolPageNumber}, 
+			#{channelUrl}, 
+			#{symbolTitle}, 
+			#{symbolSummary}, 
+			#{symbolCreateDate}, 
+			#{symbolImgUrl}, 
+			#{symbolAuthor}, 
+			#{createUserId}, 
+			#{createDate}, 
+			#{updateUserId}, 
+			#{updateDate},
+			#{symbolUrl},
+			#{symbolParagraph},
+			#{executed}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.bootdo.a5.domain.CrawlerDO">
+        update crawler
+        <set>
+            <if test="channelName != null">`channel_name` = #{channelName},</if>
+            <if test="channelDescription != null">`channel_description` = #{channelDescription},</if>
+            <if test="symbolPageNumber != null">`symbol_page_number` = #{symbolPageNumber},</if>
+            <if test="channelUrl != null">`channel_url` = #{channelUrl},</if>
+            <if test="symbolTitle != null">`symbol_title` = #{symbolTitle},</if>
+            <if test="symbolSummary != null">`symbol_summary` = #{symbolSummary},</if>
+            <if test="symbolCreateDate != null">`symbol_create_date` = #{symbolCreateDate},</if>
+            <if test="symbolImgUrl != null">`symbol_img_url` = #{symbolImgUrl},</if>
+            <if test="symbolAuthor != null">`symbol_author` = #{symbolAuthor},</if>
+            <if test="createUserId != null">`create_user_id` = #{createUserId},</if>
+            <if test="createDate != null">`create_date` = #{createDate},</if>
+            <if test="updateUserId != null">`update_user_id` = #{updateUserId},</if>
+            <if test="updateDate != null">`update_date` = #{updateDate},</if>
+            <if test="symbolUrl != null">`symbol_url` = #{symbolUrl},</if>
+            <if test="symbolParagraph != null">`symbol_paragraph` = #{symbolParagraph},</if>
+            <if test="executed != null">`executed` = #{executed}</if>
+
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from crawler where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from crawler where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

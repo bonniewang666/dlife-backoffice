@@ -79,4 +79,14 @@ update  `sys_menu` set order_num=4 where menu_id=120;
 update  `sys_menu` set order_num=5 where menu_id=127;
 update  `sys_menu` set order_num=6 where menu_id=111;
 
+delete from `sys_menu` where menu_id in (131,132,133,134);
+INSERT INTO `sys_menu` VALUES
+('131', '110', '标签池', '/a5/tag', 'a5:tag:tag', '1', '', null, null, null),
+('132', '131', '新增', '/a5/tag/add', 'a5:tag:add', '2', '', null, null, null),
+('133', '131', '修改', '/a5/tag/update', 'a5:tag:edit', '2', '', null, null, null),
+('134', '131', '删除', '/a5/tag/remove', 'a5:tag:remove', '2', '', null, null, null);
+update  `sys_menu` set order_num=7 where menu_id=131;
+
+
+
 
