@@ -9,4 +9,7 @@
   <include file="changelog/sys_menu_0929.sql" relativeToChangelogFile="true"/>
   <include file="changelog/sys_menu_092902.sql" relativeToChangelogFile="true"/>
   <include file="changelog/pin_activity_093001.sql" relativeToChangelogFile="true"/>
+  <include file="changelog/pin_activity_093002.sql" relativeToChangelogFile="true"/>
+  <include file="changelog/tags_100101.sql" relativeToChangelogFile="true"/>
+  <include file="changelog/crawler_100301.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

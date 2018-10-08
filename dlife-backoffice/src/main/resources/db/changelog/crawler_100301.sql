@@ -40,7 +40,7 @@ CREATE TABLE `article_referral` (
   `update_date` datetime DEFAULT NULL COMMENT '修改时间',
   `orgin_content` text COMMENT '原内容',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COMMENT='抓取的文章表'
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COMMENT='抓取的文章表';
 
 
 delete from `sys_menu` where menu_id in (139,140,141,142);

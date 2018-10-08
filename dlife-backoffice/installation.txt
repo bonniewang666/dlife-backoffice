@@ -1,0 +1,8 @@
+1. Run mvn clean packaging, go to target directory, bootdo-2.0.0.jar will be there
+2. Install mysql with dLife database pre-installed
+3. Open terminal, and execute: java -jar bootdo-2.0.0.jar --spring.profiles.active=dev
+4. Open http://localhost:8080/login
+5. Goes to role management, and update role, select all access permission in the tree.
+6. Logout and login again.
+
+
