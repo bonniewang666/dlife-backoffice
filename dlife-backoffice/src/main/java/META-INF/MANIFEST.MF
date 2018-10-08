@@ -1,0 +1,69 @@
+Manifest-Version: 1.0
+Class-Path: batik-codec-1.7.jar spring-core-5.0.7.RELEASE.jar nekohtml
+ -1.9.22.jar hibernate-validator-6.0.10.Final.jar spring-expression-5.
+ 0.7.RELEASE.jar jdom2-2.0.6.jar spring-data-commons-2.0.8.RELEASE.jar
+  batik-parser-1.7.jar activiti-modeler-5.22.0.jar netty-resolver-4.1.
+ 25.Final.jar liquibase-core-3.5.5.jar druid-1.0.28.jar thymeleaf-3.0.
+ 9.RELEASE.jar activiti-diagram-rest-5.22.0.jar tools.jar spring-jcl-5
+ .0.7.RELEASE.jar spring-data-keyvalue-2.0.8.RELEASE.jar rome-utils-1.
+ 7.1.jar batik-ext-1.7.jar logback-core-1.2.3.jar batik-util-1.7.jar s
+ pring-messaging-5.0.7.RELEASE.jar commons-pool-1.6.jar spring-boot-au
+ toconfigure-2.0.3.RELEASE.jar xml-apis-1.4.01.jar spring-boot-starter
+ -json-2.0.3.RELEASE.jar springfox-spring-web-2.6.1.jar jcl-over-slf4j
+ -1.7.25.jar xmlgraphics-commons-1.2.jar springfox-schema-2.6.1.jar sp
+ ring-security-core-5.0.6.RELEASE.jar spring-webmvc-5.0.7.RELEASE.jar 
+ commons-dbcp-1.4.jar spring-boot-starter-logging-2.0.3.RELEASE.jar ac
+ tiviti-common-rest-5.22.0.jar fop-0.94.jar swagger-annotations-1.5.10
+ .jar tomcat-embed-core-8.5.31.jar commons-collections-3.2.1.jar jboss
+ -logging-3.3.2.Final.jar netty-handler-4.1.25.Final.jar spring-oxm-5.
+ 0.7.RELEASE.jar jackson-datatype-jdk8-2.9.6.jar spring-aop-5.0.7.RELE
+ ASE.jar batik-js-1.7.jar batik-css-1.7.jar activiti-bpmn-converter-5.
+ 22.0.jar spring-security-crypto-5.0.6.RELEASE.jar guava-18.0.jar log4
+ j-to-slf4j-2.10.0.jar activation-1.1.1.jar lettuce-core-5.0.4.RELEASE
+ .jar activiti-image-generator-5.22.0.jar spring-boot-starter-2.0.3.RE
+ LEASE.jar batik-dom-1.7.jar netty-transport-4.1.25.Final.jar batik-tr
+ anscoder-1.7.jar unbescape-1.1.5.RELEASE.jar commons-email-1.4.jar ja
+ ckson-databind-2.9.6.jar springfox-core-2.6.1.jar spring-boot-starter
+ -thymeleaf-2.0.3.RELEASE.jar spring-plugin-metadata-1.2.0.RELEASE.jar
+  shiro-core-1.3.2.jar commons-beanutils-1.8.3.jar netty-buffer-4.1.25
+ .Final.jar activiti-bpmn-model-5.22.0.jar spring-beans-5.0.7.RELEASE.
+ jar spring-boot-starter-data-redis-2.0.3.RELEASE.jar avalon-framework
+ -api-4.3.1.jar thymeleaf-extras-shiro-2.0.0.jar activiti-spring-5.22.
+ 0.jar mybatis-spring-boot-autoconfigure-1.1.1.jar javaGeom-0.11.1.jar
+  mapstruct-1.0.0.Final.jar attoparser-2.0.4.RELEASE.jar spring-jdbc-5
+ .0.7.RELEASE.jar batik-anim-1.7.jar jedis-2.9.0.jar rome-1.7.1.jar sp
+ ring-tx-5.0.7.RELEASE.jar javax.mail-1.6.1.jar netty-codec-4.1.25.Fin
+ al.jar spring-boot-starter-jdbc-2.0.3.RELEASE.jar mybatis-spring-boot
+ -starter-1.1.1.jar shiro-web-1.3.2.jar c3p0-0.9.1.1.jar mysql-connect
+ or-java-5.1.46.jar spring-security-web-5.0.6.RELEASE.jar jul-to-slf4j
+ -1.7.25.jar spring-boot-starter-aop-2.0.3.RELEASE.jar spring-security
+ -config-5.0.6.RELEASE.jar javax.annotation-api-1.3.2.jar commons-lang
+ 3-3.6.jar jconsole.jar slf4j-api-1.7.25.jar netty-common-4.1.25.Final
+ .jar batik-svg-dom-1.7.jar jackson-datatype-jsr310-2.9.6.jar logback-
+ classic-1.2.3.jar xml-apis-ext-1.3.04.jar validation-api-2.0.1.Final.
+ jar spring-boot-2.0.3.RELEASE.jar springfox-swagger-ui-2.6.1.jar comm
+ ons-io-2.5.jar batik-awt-util-1.7.jar batik-svggen-1.7.jar reactor-co
+ re-3.1.8.RELEASE.jar shiro-cache-1.4.0.jar xercesImpl-2.11.0.jar spri
+ ng-boot-starter-cache-2.0.3.RELEASE.jar thymeleaf-extras-java8time-3.
+ 0.1.RELEASE.jar batik-gvt-1.7.jar springfox-swagger2-2.6.1.jar common
+ s-configuration-1.10.jar shiro-ehcache-1.4.0.jar thymeleaf-spring5-3.
+ 0.9.RELEASE.jar tomcat-embed-websocket-8.5.31.jar activiti-json-conve
+ rter-5.22.0.jar shiro-lang-1.4.0.jar commons-logging-1.1.1.jar batik-
+ bridge-1.7.jar quartz-2.2.1.jar batik-script-1.7.jar snakeyaml-1.19.j
+ ar shiro-spring-1.3.2.jar swagger-models-1.5.10.jar spring-context-5.
+ 0.7.RELEASE.jar jackson-annotations-2.9.0.jar springfox-spi-2.6.1.jar
+  commons-lang-2.6.jar HikariCP-2.7.9.jar tomcat-embed-el-8.5.31.jar s
+ pring-boot-starter-websocket-2.0.3.RELEASE.jar jsoup-1.9.2.jar activi
+ ti-process-validation-5.22.0.jar batik-xml-1.7.jar mybatis-spring-1.3
+ .0.jar spring-web-5.0.7.RELEASE.jar ehcache-2.10.5.jar spring-orm-5.0
+ .7.RELEASE.jar spring-boot-starter-web-2.0.3.RELEASE.jar log4j-api-2.
+ 10.0.jar activiti-engine-5.22.0.jar classmate-1.3.4.jar reactive-stre
+ ams-1.0.2.jar springfox-swagger-common-2.6.1.jar spring-websocket-5.0
+ .7.RELEASE.jar avalon-framework-impl-4.3.1.jar commons-pool2-2.5.0.ja
+ r velocity-1.7.jar aspectjweaver-1.8.13.jar mybatis-3.4.4.jar fastjso
+ n-1.2.31.jar spring-data-redis-2.0.8.RELEASE.jar joda-time-2.9.9.jar 
+ jackson-core-2.9.6.jar spring-boot-starter-tomcat-2.0.3.RELEASE.jar j
+ ackson-module-parameter-names-2.9.6.jar spring-plugin-core-1.2.0.RELE
+ ASE.jar spring-context-support-5.0.7.RELEASE.jar
+Main-Class: com.bootdo.BootdoApplication
+
