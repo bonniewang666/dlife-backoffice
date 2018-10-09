@@ -66,10 +66,10 @@ function load() {
                         }
 
                     },
-                    {
-                        field: 'originSummary',
-                        title: '概述'
-                    },
+                    // {
+                    //     field: 'originSummary',
+                    //     title: '概述'
+                    // },
                     // {
                     //     field: 'originUrl',
                     //     title: '文章地址'
@@ -142,7 +142,7 @@ function add() {
 }
 
 function edit(id) {
-    layer.open({
+    var editPage = layer.open({
         type: 2,
         title: '编辑',
         maxmin: true,
@@ -150,6 +150,8 @@ function edit(id) {
         area: ['800px', '520px'],
         content: prefix + '/edit/' + id // iframe的url
     });
+
+    layer.full(editPage);
 }
 
 function remove(id) {

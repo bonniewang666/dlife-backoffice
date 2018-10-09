@@ -1,6 +1,6 @@
 $().ready(function() {
 	$('.summernote').summernote({
-		height : '220px',
+		height : '150px',
 		lang : 'zh-CN',
         callbacks: {
             onImageUpload: function(files, editor, $editable) {
