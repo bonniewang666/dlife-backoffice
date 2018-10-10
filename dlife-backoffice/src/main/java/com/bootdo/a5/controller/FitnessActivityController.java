@@ -3,7 +3,9 @@ package com.bootdo.a5.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.a5.domain.ArticleReferralDO;
 import com.bootdo.a5.domain.FitnessActivityDO;
+import com.bootdo.a5.service.ArticleReferralService;
 import com.bootdo.common.domain.DictDO;
 import com.bootdo.common.service.DictService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -37,6 +39,8 @@ public class FitnessActivityController {
     private FitnessActivityService fitnessActivityService;
     @Autowired
     private DictService dictService;
+    @Autowired
+    private ArticleReferralService articleReferralService;
 
     @GetMapping()
     @RequiresPermissions("a5:fitnessActivity:fitnessActivity")
@@ -141,5 +145,13 @@ public class FitnessActivityController {
         return R.ok();
     }
 
+
+    @GetMapping("/addFitByArticle/{id}")
+    @RequiresPermissions("a5:fitnessActivity:add")
+    String addFitByArticle(@PathVariable("id") Long id,Model model){
+        ArticleReferralDO articleReferral = articleReferralService.get(id);
+        model.addAttribute("articleReferral", articleReferral);
+        return "a5/fitnessActivity/add";
+    }
 
 }

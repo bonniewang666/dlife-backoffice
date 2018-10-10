@@ -3,6 +3,8 @@ package com.bootdo.a5.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.bootdo.a5.domain.FitnessActivityDO;
+import com.bootdo.a5.service.FitnessActivityService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -34,7 +36,7 @@ import com.bootdo.common.utils.R;
 public class ArticleReferralController {
 	@Autowired
 	private ArticleReferralService articleReferralService;
-	
+
 	@GetMapping()
 	@RequiresPermissions("a5:articleReferral:articleReferral")
 	String ArticleReferral(){
@@ -121,5 +123,5 @@ public class ArticleReferralController {
 		model.addAttribute("articleReferral", articleReferralDO);
 		return "a5/articleReferral/detail";
 	}
-	
+
 }

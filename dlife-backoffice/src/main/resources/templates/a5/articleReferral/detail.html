@@ -11,6 +11,18 @@
                 <div class="ibox-content">
                     <a shiro:hasPermission="a5:articleReferral:edit"
                        th:href="@{'javascript:edit('+${articleReferral.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a shiro:hasPermission="a5:fitnessActivity:add"
+                       th:href="@{'javascript:addFitByArticle('+${articleReferral.id}+')'}"
+                       class="btn btn-default left">转为小目标
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a shiro:hasPermission="a5:fanActivity:add"
+                       th:href="@{'javascript:addPinByArticle('+${articleReferral.id}+')'}"
+                       class="btn btn-default left">转为小邀约
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a shiro:hasPermission="a5:question:add"
+                       th:href="@{'javascript:addQuestionByArticle('+${articleReferral.id}+')'}"
+                       class="btn btn-default left">转为小问答
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <form class="form-horizontal m-t" id="signupForm">
                         <input id="id" name="id" th:value="${articleReferral.id}" type="hidden">
                         <div class="form-group">
@@ -95,6 +107,18 @@
                     </form>
                     <a shiro:hasPermission="a5:articleReferral:edit"
                        th:href="@{'javascript:edit('+${articleReferral.id}+')'}" class="btn btn-primary left">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a shiro:hasPermission="a5:fitnessActivity:add"
+                       th:href="@{'javascript:convert2Fit('+${articleReferral.id}+')'}"
+                       class="btn btn-default left">转为小目标
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a shiro:hasPermission="a5:fanActivity:add"
+                       th:href="@{'javascript:convert2Fan('+${articleReferral.id}+')'}"
+                       class="btn btn-default left">转为小邀约
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a shiro:hasPermission="a5:question:add"
+                       th:href="@{'javascript:convert2Question('+${articleReferral.id}+')'}"
+                       class="btn btn-default left">转为小问答
+                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>

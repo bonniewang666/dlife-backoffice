@@ -11,7 +11,6 @@ $().ready(function() {
         maxHeight : 200
     });
 });
-
 function load() {
     $('#exampleTable')
         .bootstrapTable(
@@ -161,7 +160,7 @@ function reLoad() {
 }
 
 function add() {
-    layer.open({
+    var addPage = layer.open({
         type: 2,
         title: '增加',
         maxmin: true,
@@ -169,10 +168,12 @@ function add() {
         area: ['800px', '520px'],
         content: '/a5/fitnessActivity/add' // iframe的url
     });
+
+    layer.full(addPage);
 }
 
 function editFit(id) {
-    layer.open({
+    var editPage = layer.open({
         type: 2,
         title: '编辑',
         maxmin: true,
@@ -180,6 +181,7 @@ function editFit(id) {
         area: ['800px', '520px'],
         content: '/a5/fitnessActivity/edit/' + id // iframe的url
     });
+    layer.full(editPage);
 }
 
 function remove(id) {

@@ -1,5 +1,18 @@
+
 $().ready(function() {
-	validateRule();
+    $('.summernote').summernote({
+        height : '220px',
+        lang : 'zh-CN',
+        callbacks: {
+            onImageUpload: function(files, editor, $editable) {
+                console.log("onImageUpload");
+                sendFile(files);
+            }
+        }
+    });
+    var orginContent = $("#orginContent").val();
+    $('#orginContent_sn').summernote('code', orginContent);
+    validateRule();
 });
 
 $.validator.setDefaults({
@@ -8,6 +21,8 @@ $.validator.setDefaults({
 	}
 });
 function save() {
+    var orginContent_sn = $("#orginContent_sn").summernote('code');
+    $("#orginContent").val(orginContent_sn);
 	$.ajax({
 		cache : true,
 		type : "POST",

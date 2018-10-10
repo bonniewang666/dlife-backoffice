@@ -3,92 +3,111 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content ">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox float-e-margins">
-					<div class="ibox-content">
-						<form class="form-horizontal m-t" id="signupForm">
-						<input id="id" name="id" th:value="${activityParticipation.id}"  type="hidden">
-							<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="wechatUserId" name="wechatUserId" th:value="${activityParticipation.wechatUserId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="nickName" name="nickName" th:value="${activityParticipation.nickName}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="avatar" name="avatar" th:value="${activityParticipation.avatar}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="project" name="project" th:value="${activityParticipation.project}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="participationTime" name="participationTime" th:value="${activityParticipation.participationTime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="currentContinueDays" name="currentContinueDays" th:value="${activityParticipation.currentContinueDays}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="fitnessActivityId" name="fitnessActivityId" th:value="${activityParticipation.fitnessActivityId}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="latestClockinTime" name="latestClockinTime" th:value="${activityParticipation.latestClockinTime}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="longestContinueDays" name="longestContinueDays" th:value="${activityParticipation.longestContinueDays}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="totalClockinDays" name="totalClockinDays" th:value="${activityParticipation.totalClockinDays}" class="form-control" type="text">
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">：</label>
-								<div class="col-sm-8">
-									<input id="totalParticipateDays" name="totalParticipateDays" th:value="${activityParticipation.totalParticipateDays}" class="form-control" type="text">
-								</div>
-							</div>
-																					<div class="form-group">
-								<div class="col-sm-8 col-sm-offset-3">
-									<button type="submit" class="btn btn-primary">提交</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-	</div>
-	</div>
-	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/a5/activityParticipation/edit.js">
-	</script>
+<div class="wrapper wrapper-content ">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${activityParticipation.id}" type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="wechatUserId" name="wechatUserId"
+                                       th:value="${activityParticipation.wechatUserId}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="nickName" name="nickName" th:value="${activityParticipation.nickName}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="avatar" name="avatar" th:value="${activityParticipation.avatar}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="project" name="project" th:value="${activityParticipation.project}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="participationTime" name="participationTime"
+                                       th:value="${activityParticipation.participationTime}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="currentContinueDays" name="currentContinueDays"
+                                       th:value="${activityParticipation.currentContinueDays}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="fitnessActivityId" name="fitnessActivityId"
+                                       th:value="${activityParticipation.fitnessActivityId}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="latestClockinTime" name="latestClockinTime"
+                                       th:value="${activityParticipation.latestClockinTime}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="longestContinueDays" name="longestContinueDays"
+                                       th:value="${activityParticipation.longestContinueDays}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="totalClockinDays" name="totalClockinDays"
+                                       th:value="${activityParticipation.totalClockinDays}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">：</label>
+                            <div class="col-sm-8">
+                                <input id="totalParticipateDays" name="totalParticipateDays"
+                                       th:value="${activityParticipation.totalParticipateDays}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/a5/activityParticipation/edit.js">
+</script>
 </body>
 </html>

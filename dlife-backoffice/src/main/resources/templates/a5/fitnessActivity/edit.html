@@ -38,40 +38,40 @@
                         <!--</div>-->
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">活动标题：</label>
+                            <label class="col-sm-1 control-label">活动标题：</label>
                             <div class="col-sm-8">
                                 <input id="title" name="title" th:value="${fitnessActivity.title}" class="form-control"
                                        type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">活动描述：</label>
+                            <label class="col-sm-1 control-label">活动描述：</label>
                             <div class="col-sm-8">
                                 <textarea id="descrption" name="descrption" class="form-control" type="text"
                                           cols="50" rows="10">[[${fitnessActivity.descrption}]]</textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">用户id 创建人：</label>
+                            <label class="col-sm-1 control-label">用户id 创建人：</label>
                             <div class="col-sm-8">
                                 <h3 th:text="${fitnessActivity.wechatUserId}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">昵称：</label>
+                            <label class="col-sm-1 control-label">昵称：</label>
                             <div class="col-sm-8">
                                 <h3 th:text="${fitnessActivity.nickName}"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">头像：</label>
+                            <label class="col-sm-1 control-label">头像：</label>
                             <div class="col-sm-8">
                                 <img id="avatar" name="avatar" th:src="${fitnessActivity.avatar}"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">开始时间：</label>
+                            <label class="col-sm-1 control-label">开始时间：</label>
                             <div class="col-sm-8">
                                 <input type="text" class="laydate-icon layer-date form-control" id="activityStartTime"
                                        name="activityStartTime"
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">结束时间：</label>
+                            <label class="col-sm-1 control-label">结束时间：</label>
                             <div class="col-sm-8">
                                 <input type="text" class="laydate-icon layer-date form-control" id="activityEndTime"
                                        name="activityEndTime"
@@ -93,19 +93,19 @@
                             </div>
                         </div>
                         <div class=" form-group">
-                                <label class="col-sm-3 control-label">评论数量：</label>
+                                <label class="col-sm-1 control-label">评论数量：</label>
                                 <div class="col-sm-8">
                                     <h3 th:text="${fitnessActivity.commentCount}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">最后修改时间：</label>
+                                <label class="col-sm-1 control-label">最后修改时间：</label>
                                 <div class="col-sm-8">
                                     <h3 th:text="${fitnessActivity.modifyTime}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">浏览量：</label>
+                                <label class="col-sm-1 control-label">浏览量：</label>
                                 <div class="col-sm-8">
                                     <input id="readingCount" name="readingCount"
                                            th:value="${fitnessActivity.readingCount}"

@@ -131,7 +131,7 @@ function reLoad() {
 }
 
 function add() {
-    layer.open({
+    var addPage = layer.open({
         type: 2,
         title: '增加',
         maxmin: true,
@@ -139,6 +139,8 @@ function add() {
         area: ['800px', '520px'],
         content: prefix + '/add' // iframe的url
     });
+
+    layer.full(addPage);
 }
 
 function edit(id) {
@@ -212,4 +214,18 @@ function batchRemove() {
     }, function () {
 
     });
+}
+
+
+function addFitByArticle(id) {
+    var convertPage = layer.open({
+        type: 2,
+        title: '转化为小目标',
+        maxmin: true,
+        shadeClose: false, // 点击遮罩关闭层
+        area: ['800px', '520px'],
+        content: '/a5/fitnessActivity/addFitByArticle/' + id // iframe的url
+    });
+
+    layer.full(convertPage);
 }

@@ -26,81 +26,81 @@
 							<form class="form-horizontal m-t" id="signupForm">
 							<input id="id" name="id" th:value="${fitnessActivity.id}"  type="hidden">
 								<div class="form-group">
-									<label class="col-sm-3 control-label">公司：</label>
+									<label class="col-sm-1 control-label">公司：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.bizModuleDO.company}"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">板块：</label>
+									<label class="col-sm-1 control-label">板块：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.bizModuleDO.bizCategory}"/>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label">发起人微信编号：</label>
+									<label class="col-sm-1 control-label">发起人微信编号：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.wechatUserId}"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">发起人头像：</label>
+									<label class="col-sm-1 control-label">发起人头像：</label>
 									<div class="col-sm-8">
 										<img id="avatar" name="avatar" th:src="${fitnessActivity.avatar}"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">发起人昵称：</label>
+									<label class="col-sm-1 control-label">发起人昵称：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.nickName}"/>
 									</div>
 								</div>
 								<!--<div class="form-group">-->
-									<!--<label class="col-sm-3 control-label">项目名称：</label>-->
+									<!--<label class="col-sm-1 control-label">项目名称：</label>-->
 									<!--<div class="col-sm-8">-->
 										<!--<h3 th:text="${fitnessActivity.project}"/>-->
 									<!--</div>-->
 								<!--</div>-->
 								<!--<div class="form-group">-->
-									<!--<label class="col-sm-3 control-label">公司角色：</label>-->
+									<!--<label class="col-sm-1 control-label">公司角色：</label>-->
 									<!--<div class="col-sm-8">-->
 										<!--<h3 th:text="${fitnessActivity.companyRole}"/>-->
 									<!--</div>-->
 								<!--</div>-->
 
 								<div class="form-group">
-									<label class="col-sm-3 control-label">活动描述：</label>
+									<label class="col-sm-1 control-label">活动描述：</label>
 									<div class="col-sm-8">
 										<h3 th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(fitnessActivity.descrption),'n','&lt;br/&gt;'))}"/>
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-3 control-label">开始时间：</label>
+									<label class="col-sm-1 control-label">开始时间：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.activityStartTime}"/>
 									</div>
 								</div>
 															<div class="form-group">
-									<label class="col-sm-3 control-label">结束时间：</label>
+									<label class="col-sm-1 control-label">结束时间：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.activityEndTime}"/>
 									</div>
 								</div>
 															<div class="form-group">
-									<label class="col-sm-3 control-label">评论数量：</label>
+									<label class="col-sm-1 control-label">评论数量：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.commentCount}"/>
 									</div>
 								</div>
 															<div class="form-group">
-									<label class="col-sm-3 control-label">最后修改时间：</label>
+									<label class="col-sm-1 control-label">最后修改时间：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.modifyTime}"/>
 									</div>
 								</div>
 															<div class="form-group">
-									<label class="col-sm-3 control-label">浏览数：</label>
+									<label class="col-sm-1 control-label">浏览数：</label>
 									<div class="col-sm-8">
 										<h3 th:text="${fitnessActivity.readingCount}"/>
 									</div>
