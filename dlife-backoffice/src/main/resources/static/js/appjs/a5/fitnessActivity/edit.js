@@ -1,4 +1,16 @@
 $().ready(function() {
+    $('.summernote').summernote({
+        height : '220px',
+        lang : 'zh-CN',
+        callbacks: {
+            onImageUpload: function(files, editor, $editable) {
+                console.log("onImageUpload");
+                sendFile(files);
+            }
+        }
+    });
+    var descrption = $("#descrption").val();
+    $('#descrption_sn').summernote('code', descrption);
 	validateRule();
 });
 
@@ -8,6 +20,9 @@ $.validator.setDefaults({
 	}
 });
 function update() {
+    var descrption_sn = $("#descrption_sn").summernote('code');
+    $("#descrption").val(descrption_sn);
+
 	$.ajax({
 		cache : true,
 		type : "POST",

@@ -13,28 +13,28 @@
                         <input id="id" name="id" th:value="${fitnessActivity.id}" type="hidden">
 
                         <!--<div class="form-group">-->
-                            <!--<label class="col-sm-3 control-label">选择公司：</label>-->
-                            <!--<div class="col-sm-8">-->
-                                <!--<select id="company" name="company" class="chosen-select-company"-->
-                                        <!--data-placeholder="&#45;&#45; 选择公司 &#45;&#45;"-->
-                                        <!--style="width:70%;"-->
-                                        <!--tabindex="1">-->
-                                    <!--<option value="" selected="selected">&#45;&#45;选择公司&#45;&#45;</option>-->
-                                    <!--<option th:each="company :${companies}" class="checkbox-inline" th:value="${company.value}" th:text="${company.name}"></option>-->
-                                <!--</select>-->
-                            <!--</div>-->
+                        <!--<label class="col-sm-3 control-label">选择公司：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<select id="company" name="company" class="chosen-select-company"-->
+                        <!--data-placeholder="&#45;&#45; 选择公司 &#45;&#45;"-->
+                        <!--style="width:70%;"-->
+                        <!--tabindex="1">-->
+                        <!--<option value="" selected="selected">&#45;&#45;选择公司&#45;&#45;</option>-->
+                        <!--<option th:each="company :${companies}" class="checkbox-inline" th:value="${company.value}" th:text="${company.name}"></option>-->
+                        <!--</select>-->
+                        <!--</div>-->
                         <!--</div>-->
 
                         <!--<div class="form-group">-->
-                            <!--<label class="col-sm-3 control-label">选择板块：</label>-->
-                            <!--<div class="col-sm-8">-->
-                                <!--<select id="bizCategory" name="bizCategory" class="chosen-select-module"-->
-                                        <!--data-placeholder="&#45;&#45; 选择业务板块 &#45;&#45;"-->
-                                        <!--style="width:70%;"-->
-                                        <!--tabindex="2">-->
-                                    <!--<option value="">&#45;&#45;选择业务板块&#45;&#45;</option>-->
-                                <!--</select>-->
-                            <!--</div>-->
+                        <!--<label class="col-sm-3 control-label">选择板块：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<select id="bizCategory" name="bizCategory" class="chosen-select-module"-->
+                        <!--data-placeholder="&#45;&#45; 选择业务板块 &#45;&#45;"-->
+                        <!--style="width:70%;"-->
+                        <!--tabindex="2">-->
+                        <!--<option value="">&#45;&#45;选择业务板块&#45;&#45;</option>-->
+                        <!--</select>-->
+                        <!--</div>-->
                         <!--</div>-->
 
                         <div class="form-group">
@@ -45,10 +45,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label">活动描述：</label>
-                            <div class="col-sm-8">
-                                <textarea id="descrption" name="descrption" class="form-control" type="text"
-                                          cols="50" rows="10">[[${fitnessActivity.descrption}]]</textarea>
+                            <input id="descrption" name="descrption" type="hidden"
+                                   th:value="${fitnessActivity.descrption}"> <label
+                                class="col-sm-1 control-label">活动描述：</label>
+                            <div class="col-sm-11">
+                                <div class="ibox-content no-padding">
+                                    <div id="descrption_sn" class="summernote"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -93,26 +96,26 @@
                             </div>
                         </div>
                         <div class=" form-group">
-                                <label class="col-sm-1 control-label">评论数量：</label>
-                                <div class="col-sm-8">
-                                    <h3 th:text="${fitnessActivity.commentCount}"/>
-                                </div>
+                            <label class="col-sm-1 control-label">评论数量：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${fitnessActivity.commentCount}"/>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">最后修改时间：</label>
-                                <div class="col-sm-8">
-                                    <h3 th:text="${fitnessActivity.modifyTime}"/>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">最后修改时间：</label>
+                            <div class="col-sm-8">
+                                <h3 th:text="${fitnessActivity.modifyTime}"/>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-1 control-label">浏览量：</label>
-                                <div class="col-sm-8">
-                                    <input id="readingCount" name="readingCount"
-                                           th:value="${fitnessActivity.readingCount}"
-                                           class="form-control" type="text">
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">浏览量：</label>
+                            <div class="col-sm-8">
+                                <input id="readingCount" name="readingCount"
+                                       th:value="${fitnessActivity.readingCount}"
+                                       class="form-control" type="text">
                             </div>
-                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">保存</button>
                     </form>
                 </div>
             </div>

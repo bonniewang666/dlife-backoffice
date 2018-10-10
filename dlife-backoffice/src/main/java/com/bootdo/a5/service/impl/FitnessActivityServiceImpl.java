@@ -44,11 +44,13 @@ public class FitnessActivityServiceImpl implements FitnessActivityService {
 
     @Override
     public int save(FitnessActivityDO fitnessActivity) {
+        fitnessActivity.setModifyTime( new Date( ));
         return fitnessActivityDao.save(fitnessActivity);
     }
 
     @Override
     public int update(FitnessActivityDO fitnessActivity) {
+        fitnessActivity.setModifyTime( new Date());
         return fitnessActivityDao.update(fitnessActivity);
     }
 
