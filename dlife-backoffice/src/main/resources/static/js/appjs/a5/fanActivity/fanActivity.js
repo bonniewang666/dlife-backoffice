@@ -84,7 +84,7 @@ function load() {
                     },
 
                     {
-                        field: 'setTop',
+                        field: 'stick',
                         title: '是否置顶',
                         formatter: function (value, row, index) {
                             if (value == 1) {
@@ -97,7 +97,7 @@ function load() {
                     },
 
                     {
-                        field: 'numOrder',
+                        field: 'stickOrder',
                         title: '置顶顺序'
                     },
                     {

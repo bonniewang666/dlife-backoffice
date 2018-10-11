@@ -43,11 +43,13 @@ public class FanActivityServiceImpl implements FanActivityService {
 	
 	@Override
 	public int save(FanActivityDO fanActivity){
+		fanActivity.setModifyTime(new Date());
 		return fanActivityDao.save(fanActivity);
 	}
 	
 	@Override
 	public int update(FanActivityDO fanActivity){
+		fanActivity.setModifyTime(new Date());
 		return fanActivityDao.update(fanActivity);
 	}
 	

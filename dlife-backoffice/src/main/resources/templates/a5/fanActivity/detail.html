@@ -64,14 +64,14 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">是否置顶：</label>
                                 <div class="col-sm-8">
-                                    <h3 th:if="${fanActivity.setTop == 1 }">是</h3>
-                                    <h3 th:if="${ fanActivity.setTop == 0 }">否</h3>
+                                    <h3 th:if="${fanActivity.stick == 1 }">是</h3>
+                                    <h3 th:if="${ fanActivity.stick == 0 }">否</h3>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">置顶顺序：</label>
                                 <div class="col-sm-8">
-                                    <h3 th:text="${fanActivity.numOrder}"/>
+                                    <h3 th:text="${fanActivity.stickOrder}"/>
                                 </div>
                             </div>
                             <div class="form-group">
