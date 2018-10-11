@@ -5,9 +5,13 @@ import java.util.Map;
 
 import com.bootdo.a5.domain.ArticleReferralDO;
 import com.bootdo.a5.domain.FitnessActivityDO;
+import com.bootdo.a5.domain.WechatUserDO;
 import com.bootdo.a5.service.ArticleReferralService;
+import com.bootdo.a5.service.WechatUserService;
 import com.bootdo.common.domain.DictDO;
 import com.bootdo.common.service.DictService;
+import com.bootdo.common.utils.ShiroUtils;
+import com.bootdo.system.domain.UserDO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -41,6 +45,8 @@ public class FitnessActivityController {
     private DictService dictService;
     @Autowired
     private ArticleReferralService articleReferralService;
+    @Autowired
+    private WechatUserService wechatUserService;
 
     @GetMapping()
     @RequiresPermissions("a5:fitnessActivity:fitnessActivity")
@@ -150,7 +156,12 @@ public class FitnessActivityController {
     @RequiresPermissions("a5:fitnessActivity:add")
     String addFitByArticle(@PathVariable("id") Long id,Model model){
         ArticleReferralDO articleReferral = articleReferralService.get(id);
+
+        UserDO currUser = ShiroUtils.getUser();
+        WechatUserDO wechatUser = wechatUserService.get( currUser.getWechatUserId() );
+
         model.addAttribute("articleReferral", articleReferral);
+        model.addAttribute("wechatUser", wechatUser);
         return "a5/fitnessActivity/add";
     }
 

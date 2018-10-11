@@ -50,6 +50,16 @@ public class UserDO implements Serializable {
     private String city;
     //所在地区
     private String district;
+    //系统用户关联的微信ID，用于在后台发布信息关联前台显示
+    private Long wechatUserId;
+
+    public Long getWechatUserId() {
+        return wechatUserId;
+    }
+
+    public void setWechatUserId(Long wechatUserId) {
+        this.wechatUserId = wechatUserId;
+    }
 
     public Long getUserId() {
         return userId;

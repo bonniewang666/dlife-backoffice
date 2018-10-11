@@ -1,5 +1,7 @@
 package com.bootdo.common.utils;
 
+import com.bootdo.a5.dao.WechatUserDao;
+import com.bootdo.a5.domain.WechatUserDO;
 import com.bootdo.system.domain.UserToken;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.shiro.SecurityUtils;
@@ -18,6 +20,8 @@ import java.util.List;
 public class ShiroUtils {
     @Autowired
     private static SessionDAO sessionDAO;
+    @Autowired
+    private static WechatUserDao wechatUserDao;
 
     public static Subject getSubjct() {
         return SecurityUtils.getSubject();
@@ -38,4 +42,8 @@ public class ShiroUtils {
         Collection<Session> sessions = sessionDAO.getActiveSessions();
         return principals;
     }
+    public static WechatUserDO getWechatUser() {
+        return wechatUserDao.get(getUser().getWechatUserId());
+    }
+
 }

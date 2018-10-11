@@ -55,9 +55,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-1 control-label">用户id 创建人：</label>
+                            <label class="col-sm-1 control-label">创建人微信ID：</label>
                             <div class="col-sm-8">
-                                <h3 th:text="${fitnessActivity.wechatUserId}"/>
+                                <input id="wechatUserId" name="wechatUserId" th:value="${fitnessActivity.wechatUserId}" class="form-control"
+                                       type="text">
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,7 +80,7 @@
                                 <input type="text" class="laydate-icon layer-date form-control" id="activityStartTime"
                                        name="activityStartTime"
                                        th:value="${fitnessActivity.activityStartTime}==null?null:${#dates.format(fitnessActivity.activityStartTime,'yyyy-MM-dd HH:mm:ss')}"
-                                       placeholder="请选择截至日期"
+                                       placeholder="请选择开始日期"
                                        onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
                                        style="background-color: #fff;"/>
                             </div>
