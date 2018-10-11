@@ -12,4 +12,5 @@
   <include file="changelog/pin_activity_093002.sql" relativeToChangelogFile="true"/>
   <include file="changelog/tags_100101.sql" relativeToChangelogFile="true"/>
   <include file="changelog/crawler_100301.sql" relativeToChangelogFile="true"/>
+  <include file="changelog/davidzhu_1010.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
